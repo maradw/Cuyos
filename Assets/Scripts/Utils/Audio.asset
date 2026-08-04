@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb247c4131add2e48943b31a9be8fbac, type: 3}
+  m_Name: Audio
+  m_EditorClassIdentifier: Assembly-CSharp::AudioData
+  _master: 0.48037666
+  _SFX: 0.51600856
+  _music: 0.4031741
