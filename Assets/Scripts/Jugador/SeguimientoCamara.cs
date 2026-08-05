@@ -4,8 +4,19 @@ using UnityEngine;
 
 public class SeguimientoCamara : MonoBehaviour
 {
+    public enum MomentoActualizacion
+    {
+        Update,
+        FixedUpdate,
+        LateUpdate
+    }
+
     public Transform objetivoASeguir;
-    [Range(0.01f, 1f)] public float tiempoDeSuavizado = 0.2f;
+    
+    [Tooltip("Elige cuándo debe moverse la cámara. Si el cuy tiembla, prueba cambiar esto en el Inspector en tiempo real.")]
+    public MomentoActualizacion momentoDeSeguimiento = MomentoActualizacion.LateUpdate;
+
+    [Range(0f, 1f)] public float tiempoDeSuavizado = 0.1f;
     public Vector3 desplazamientoCamara = new Vector3(0, 0, -10f);
 
     public bool delimitarBordes = false;
@@ -26,7 +37,31 @@ public class SeguimientoCamara : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (momentoDeSeguimiento == MomentoActualizacion.Update)
+        {
+            EjecutarSeguimiento();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (momentoDeSeguimiento == MomentoActualizacion.FixedUpdate)
+        {
+            EjecutarSeguimiento();
+        }
+    }
+
     private void LateUpdate()
+    {
+        if (momentoDeSeguimiento == MomentoActualizacion.LateUpdate)
+        {
+            EjecutarSeguimiento();
+        }
+    }
+
+    private void EjecutarSeguimiento()
     {
         if (objetivoASeguir == null) return;
 

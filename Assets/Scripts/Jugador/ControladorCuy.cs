@@ -65,7 +65,7 @@ public class ControladorCuy : MonoBehaviour
 
         cuerpoFisico.bodyType = RigidbodyType2D.Dynamic;
         cuerpoFisico.gravityScale = 0f;
-        cuerpoFisico.freezeRotation = true;
+        cuerpoFisico.freezeRotation = false; // Permitimos rotar físicamente mediante MoveRotation
         cuerpoFisico.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
         if (capacidadMochila <= 0)
@@ -123,7 +123,6 @@ public class ControladorCuy : MonoBehaviour
         }
 
         ActualizarEfectoVisualSigilo(presionandoShift);
-        GirarHaciaMovimiento();
         ActualizarAnimador();
     }
 
@@ -144,6 +143,9 @@ public class ControladorCuy : MonoBehaviour
         float tasaCambioVelocidad = (entradaMovimiento.magnitude > 0.01f) ? fuerzaAceleracion : fuerzaDesaceleracion;
         velocidadActual = Vector2.MoveTowards(cuerpoFisico.linearVelocity, velocidadObjetivo, tasaCambioVelocidad * Time.fixedDeltaTime);
         cuerpoFisico.linearVelocity = velocidadActual;
+
+        // Rotar físicamente en FixedUpdate para evitar conflictos con el motor de físicas
+        GirarHaciaMovimientoFisico();
     }
 
     private void ObtenerEntradasNuevoSistema()
@@ -196,15 +198,15 @@ public class ControladorCuy : MonoBehaviour
         }
     }
 
-    private void GirarHaciaMovimiento()
+    private void GirarHaciaMovimientoFisico()
     {
         if (entradaMovimiento.magnitude > 0.1f)
         {
             if (rotarHaciaDireccion)
             {
                 float anguloDestino = Mathf.Atan2(entradaMovimiento.y, entradaMovimiento.x) * Mathf.Rad2Deg - 90f;
-                float anguloSuave = Mathf.LerpAngle(transform.eulerAngles.z, anguloDestino, velocidadDeGiro * Time.deltaTime);
-                transform.rotation = Quaternion.Euler(0, 0, anguloSuave);
+                float anguloSuave = Mathf.LerpAngle(cuerpoFisico.rotation, anguloDestino, velocidadDeGiro * Time.fixedDeltaTime);
+                cuerpoFisico.MoveRotation(anguloSuave);
             }
             else if (renderizadorSprite != null)
             {
