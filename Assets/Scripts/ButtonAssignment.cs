@@ -9,7 +9,7 @@ public class ButtonAssignment : MonoBehaviour
     [SerializeField] Button AudioSettings;
     void Start()
     {
-       //startButton.onClick.AddListener(() => TransitionManager.Instance.LoadSceneByName("nose"));
+       startButton.onClick.AddListener(() => TransitionManager.Instance.LoadSceneByName("CinematicaInicio"));
        exitButton.onClick.AddListener(TransitionManager.Instance.ExitGame);
         //creditsButton.onClick.AddListener(() => TransitionManager.Instance.LoadSceneByName("Credits"));
         AudioSettings.onClick.AddListener(TransitionManager.Instance.ShowAudioSettings);
