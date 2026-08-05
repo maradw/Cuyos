@@ -142,8 +142,8 @@ public class ControladorCuy : MonoBehaviour
 
         velocidadObjetivo = entradaMovimiento * velocidadActualMaxima;
         float tasaCambioVelocidad = (entradaMovimiento.magnitude > 0.01f) ? fuerzaAceleracion : fuerzaDesaceleracion;
-        velocidadActual = Vector2.MoveTowards(cuerpoFisico.velocity, velocidadObjetivo, tasaCambioVelocidad * Time.fixedDeltaTime);
-        cuerpoFisico.velocity = velocidadActual;
+        velocidadActual = Vector2.MoveTowards(cuerpoFisico.linearVelocity, velocidadObjetivo, tasaCambioVelocidad * Time.fixedDeltaTime);
+        cuerpoFisico.linearVelocity = velocidadActual;
     }
 
     private void ObtenerEntradasNuevoSistema()
