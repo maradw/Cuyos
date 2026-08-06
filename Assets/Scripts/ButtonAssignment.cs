@@ -15,7 +15,6 @@ public class ButtonAssignment : MonoBehaviour
         AudioSettings.onClick.AddListener(TransitionManager.Instance.ShowAudioSettings);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
