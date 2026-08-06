@@ -9,8 +9,14 @@ public class CinematicsController : MonoBehaviour
     [SerializeField] Sprite[] cinematicsImages;
     int currentImage ;
     [SerializeField] Image showImage;
+    [SerializeField] Button nextScene;
+    [SerializeField] Button nextImage;
     void Start()
     {
+        nextScene.gameObject.SetActive(false);
+        nextImage.gameObject.SetActive(true);
+        nextImage.onClick.AddListener((NextImage));
+        nextScene.onClick.AddListener(() => TransitionManager.Instance.LoadSceneByName("Level1"));
         currentImage = 0;
         showImage.sprite = cinematicsImages[currentImage];
     }
@@ -20,6 +26,11 @@ public class CinematicsController : MonoBehaviour
     {
         
     }
+    void OnDestroy()
+    {
+        nextScene.onClick.RemoveAllListeners();
+        nextImage.onClick.RemoveAllListeners();
+    }
 
     public void NextImage()
     {
@@ -28,12 +39,15 @@ public class CinematicsController : MonoBehaviour
             currentImage++;
            
            // showImage= cinematicsImages[currentImage];
-           if (currentImage >= cinematicsImages.Length)
+           if (currentImage +1 >= cinematicsImages.Length)
             {
-                currentImage = 0;
+                nextScene.gameObject.SetActive(true);
+                nextImage.gameObject.SetActive(false);
+                //currentImage = 0;
                 //showImage.sprite = cinematicsImages[currentImage];
             }
             showImage.sprite = cinematicsImages[currentImage];
         }
     }
+    
 }
