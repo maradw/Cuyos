@@ -2,58 +2,85 @@ using UnityEngine;
 
 public class controller_condor : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public bool condor;
-    public bool cuy;
-    public GameObject player;
-    public GameObject ave;
-    public bool mov;
-    public Rigidbody2D rbcondor;
-    public Rigidbody2D rbcuy;
-    void Start()
-    {
-        player = GameObject.FindWithTag("Player");
-        rbcondor = ave.GetComponent<Rigidbody2D>();
-        rbcuy = player.GetComponent<Rigidbody2D>();
+    public GameObject ave; 
+    private bool capturado = false;
+    private SpriteRenderer[] renderizadoresAve;
 
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if(condor && cuy)
+        if (ave == null && transform.parent != null)
         {
-            player.transform.SetParent(ave.transform);
-            mov = true;
+            foreach (Transform hermano in transform.parent)
+            {
+                if (hermano.GetComponent<Condor>() != null || hermano.name.ToLower().Contains("ave") || hermano.name.ToLower().Contains("condor"))
+                {
+                    ave = hermano.gameObject;
+                    break;
+                }
+            }
         }
-        if(mov)
+
+        if (ave != null)
         {
-            rbcuy.linearVelocity = rbcondor.linearVelocity;
+            renderizadoresAve = ave.GetComponentsInChildren<SpriteRenderer>();
+            SetRenderersActive(false);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Player"))
-        {
-            cuy = true;
+        Debug.Log($"[COLISIÓN] Cuy pisó sombra: {collision.gameObject.name}");
 
-        }
-        if (collision.transform.CompareTag("Condor"))
+        if (capturado) return;
+
+        ControladorCuy cuy = collision.GetComponent<ControladorCuy>();
+        if (cuy != null)
         {
-            condor = true;
+            capturado = true;
+            
+            cuy.estadoActual = ControladorCuy.EstadoCuy.Agotado;
+            
+            Rigidbody2D cuyRb = cuy.GetComponent<Rigidbody2D>();
+            if (cuyRb != null)
+            {
+                cuyRb.bodyType = RigidbodyType2D.Kinematic;
+                cuyRb.linearVelocity = Vector2.zero;
+            }
+
+            Collider2D cuyCol = cuy.GetComponent<Collider2D>();
+            if (cuyCol != null)
+            {
+                cuyCol.enabled = false;
+            }
+
+            if (renderizadoresAve == null && ave != null)
+            {
+                renderizadoresAve = ave.GetComponentsInChildren<SpriteRenderer>();
+            }
+
+            SetRenderersActive(true);
+
+            if (ave != null)
+            {
+                Condor scriptCondor = ave.GetComponent<Condor>();
+                if (scriptCondor != null)
+                {
+                    scriptCondor.IniciarPicada(cuy.gameObject);
+                }
+            }
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+
+    private void SetRenderersActive(bool active)
     {
-        if (collision.transform.CompareTag("Player"))
-        {
-            cuy = false;
+        if (renderizadoresAve == null) return;
 
-        }
-        if (collision.transform.CompareTag("Condor"))
+        foreach (SpriteRenderer sr in renderizadoresAve)
         {
-            condor = false;
+            if (sr != null)
+            {
+                sr.enabled = active;
+            }
         }
-
     }
 }

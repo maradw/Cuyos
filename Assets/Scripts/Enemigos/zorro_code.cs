@@ -7,13 +7,17 @@ public class zorro_code : MonoBehaviour
     public Rigidbody2D rb2d;
     public Image img;
     public Canvas canvas;
+    private Animator animador;
 
     [Header("Patrullaje")]
     public Transform A;
     public Transform B;
     public float distanciaMinimaPunto = 0.2f;
+    public float tiempoDeEsperaEnPunto = 1.5f;
     private Transform puntoObjetivoActual;
     public Vector2 direccion;
+    private float temporizadorEspera = 0f;
+    private bool estaEsperando = false;
 
     [Header("Configuracion Cuy")]
     public ControladorCuy player_code;
@@ -21,9 +25,11 @@ public class zorro_code : MonoBehaviour
     public Rigidbody2D player_rb;
 
     [Header("Deteccion y Velocidad")]
-    public float rangoDeteccion = 6f;
+    public float rangoDeteccion = 12.0f; 
+    public float rangoDeteccionProximidad = 6.0f; 
     public float speed = 3f;
     public float velocidadCaza = 7f;
+    public float velocidadGiroZorro = 8f;
 
     private float velocidadOriginal;
     public bool caza = false;
@@ -31,11 +37,12 @@ public class zorro_code : MonoBehaviour
     [Header("Sospecha")]
     public float barra_tot = 100f;
     public float barra_act = 0f;
-    public float suma = 1f;
+    public float velocidadLlenadoBarra = 15f; 
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        animador = GetComponent<Animator>();
         velocidadOriginal = speed;
 
         if (rb2d != null && rb2d.bodyType == RigidbodyType2D.Static)
@@ -68,42 +75,92 @@ public class zorro_code : MonoBehaviour
 
     void Update()
     {
-        if (player == null)
+        if (player == null || player_code == null)
         {
+            player = null;
+            player_code = null;
+            player_rb = null;
+
             BuscarAlJugador();
             if (player == null)
             {
                 PatrullarPuntos();
+                ActualizarAnimaciones();
                 return;
             }
         }
 
-        if (img != null)
+        ActualizarBarraDeSospecha();
+
+        float anguloObjetivo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg + 90f;
+        float anguloSuave = Mathf.LerpAngle(transform.eulerAngles.z, anguloObjetivo, velocidadGiroZorro * Time.deltaTime);
+        transform.rotation = Quaternion.Euler(0, 0, anguloSuave);
+
+        if (canvas != null)
         {
-            img.fillAmount = barra_act / barra_tot;
+            canvas.transform.position = transform.position + new Vector3(0f, 1.3f, 0f);
+            canvas.transform.rotation = Quaternion.identity;
         }
 
-        float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angulo);
-
-        float distanciaAlJugador = Vector2.Distance(transform.position, player.transform.position);
+        float distanciaAlJugador = 999f;
+        try
+        {
+            if (player != null)
+            {
+                distanciaAlJugador = Vector2.Distance(transform.position, player.transform.position);
+            }
+        }
+        catch (System.Exception)
+        {
+            player = null;
+            player_code = null;
+            player_rb = null;
+            PatrullarPuntos();
+            ActualizarAnimaciones();
+            return;
+        }
 
         if (caza)
         {
-            direccion = (player.transform.position - transform.position).normalized;
-            rb2d.linearVelocity = direccion * velocidadCaza;
+            estaEsperando = false;
+            try
+            {
+                direccion = (player.transform.position - transform.position).normalized;
+                rb2d.linearVelocity = direccion * velocidadCaza;
+            }
+            catch (System.Exception)
+            {
+                caza = false;
+                barra_act = 0f;
+                rb2d.linearVelocity = Vector2.zero;
+            }
+            
             if (canvas != null)
             {
-                canvas.enabled = false;
+                canvas.enabled = true;
             }
         }
         else
         {
-            if (distanciaAlJugador <= rangoDeteccion && player_code != null && player_code.entradaMovimiento.magnitude > 0.1f && !player_code.estadoOculto)
+            bool detectadoNormal = (distanciaAlJugador <= rangoDeteccion && player_code != null && player_code.entradaMovimiento.magnitude > 0.1f && !player_code.estadoOculto);
+            bool detectadoPorProximidad = (distanciaAlJugador <= rangoDeteccionProximidad);
+
+            if (detectadoNormal || detectadoPorProximidad)
             {
+                estaEsperando = false;
+                
                 if (barra_act < barra_tot)
                 {
-                    barra_act += suma;
+                    float factorCercania = 1f - Mathf.Clamp01(distanciaAlJugador / rangoDeteccion);
+                    float multiplicadorProximidad = Mathf.Lerp(1f, 4f, factorCercania);
+                    
+                    float modificadorSigilo = 2.2f;
+                    if (player_code != null && player_code.estadoOculto)
+                    {
+                        modificadorSigilo = 0.4f;
+                    }
+                    
+                    barra_act += velocidadLlenadoBarra * multiplicadorProximidad * modificadorSigilo * Time.deltaTime;
                     rb2d.linearVelocity = Vector2.zero;
                 }
                 else
@@ -115,11 +172,50 @@ public class zorro_code : MonoBehaviour
             {
                 if (barra_act > 0)
                 {
-                    barra_act -= suma * 0.5f;
+                    barra_act -= velocidadLlenadoBarra * 0.7f * Time.deltaTime;
+                }
+                else
+                {
+                    barra_act = 0f;
                 }
 
                 PatrullarPuntos();
             }
+        }
+
+        ActualizarAnimaciones();
+    }
+
+    private void ActualizarBarraDeSospecha()
+    {
+        if (img == null) return;
+
+        img.fillAmount = barra_act / barra_tot;
+
+        if (caza)
+        {
+            img.color = Mathf.PingPong(Time.time * 8f, 1f) > 0.5f ? Color.red : new Color(0.3f, 0f, 0f);
+        }
+        else if (barra_act >= barra_tot * 0.70f)
+        {
+            img.color = Color.red; 
+        }
+        else if (barra_act >= barra_tot * 0.35f)
+        {
+            img.color = new Color(1f, 0.5f, 0f); 
+        }
+        else
+        {
+            img.color = Color.green; 
+        }
+    }
+
+    private void ActualizarAnimaciones()
+    {
+        if (animador != null)
+        {
+            animador.SetFloat("velocidad", rb2d.linearVelocity.magnitude);
+            animador.SetBool("caza", caza);
         }
     }
 
@@ -140,38 +236,54 @@ public class zorro_code : MonoBehaviour
 
     private void PatrullarPuntos()
     {
+        if (estaEsperando)
+        {
+            rb2d.linearVelocity = Vector2.zero;
+            temporizadorEspera -= Time.deltaTime;
+            if (temporizadorEspera <= 0f)
+            {
+                estaEsperando = false;
+                puntoObjetivoActual = (puntoObjetivoActual == B) ? A : B;
+            }
+            return;
+        }
+
         direccion = (puntoObjetivoActual.position - transform.position).normalized;
         rb2d.linearVelocity = direccion * speed;
 
         if (Vector2.Distance(transform.position, puntoObjetivoActual.position) < distanciaMinimaPunto)
         {
-            puntoObjetivoActual = (puntoObjetivoActual == B) ? A : B;
+            estaEsperando = true;
+            temporizadorEspera = tiempoDeEsperaEnPunto;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.CompareTag("Player"))
+        ControladorCuy cuy = collision.GetComponent<ControladorCuy>();
+        if (cuy != null)
         {
-            caza = false;
-            barra_act = 0f;
-            puntoObjetivoActual = B;
-            direccion = (B.position - transform.position).normalized;
+            float distanciaReal = Vector2.Distance(transform.position, cuy.transform.position);
             
-            if (player_code != null)
+            if (distanciaReal <= 1.3f)
             {
-                player_code.estadoActual = ControladorCuy.EstadoCuy.Agotado;
+                if (caza || cuy.estadoOculto)
+                {
+                    caza = false;
+                    barra_act = 0f;
+                    puntoObjetivoActual = B;
+                    direccion = (B.position - transform.position).normalized;
+                    cuy.estadoActual = ControladorCuy.EstadoCuy.Agotado;
+                    
+                    Debug.Log("¡Atrapado! El zorro te comió.");
+                    cuy.Morir();
+                }
+                else
+                {
+                    barra_act = barra_tot;
+                    caza = true;
+                }
             }
-            
-            Destroy(player);
-        }
-    }
-
-    private void OnBecameInvisible()
-    {
-        if (transform.parent != null)
-        {
-            Destroy(transform.parent.gameObject);
         }
     }
 }

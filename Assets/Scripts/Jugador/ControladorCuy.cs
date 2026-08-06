@@ -13,17 +13,46 @@ public class ControladorCuy : MonoBehaviour
         Caminando,
         CargandoComida,
         Agotado,
-        Oculto
+        Oculto,
+        Deslizando 
     }
 
-    [Header("Movimiento")]
+    [Header("Movimiento Base")]
     public float velocidadMaxima = 6f;
     public float fuerzaAceleracion = 50f;
     public float fuerzaDesaceleracion = 40f;
 
+    [Header("Peso por Carga")]
+    public float penalizacionVelocidadPorInsumo = 0.04f;
+
+    [Header("Impulso de Escape (Dash)")]
+    [Tooltip("Permite al cuy dar un breve impulso de velocidad al presionar Espacio")]
+    public bool permitirImpulso = true;
+    public float multiplicadorImpulso = 1.8f;
+    public float duracionImpulso = 0.25f;
+    public float cooldownImpulso = 3f;
+    [HideInInspector] public bool estaDasheando = false;
+    private float temporizadorImpulso = 0f;
+    private float temporizadorCooldown = 0f;
+
+    [Header("Mecánica de Charco (Empapado)")]
+    [HideInInspector] public bool estaEmpapado = false;
+    [HideInInspector] public float temporizadorEmpapado = 0f;
+    private float temporizadorGotitas = 0f;
+    private Sprite spriteGotaGenerica;
+    
+    private bool estaSacudiendose = false;
+    private float temporizadorSacudida = 0f;
+    private float temporizadorBurstGotas = 0f;
+
     [Header("Rotacion")]
     public bool rotarHaciaDireccion = true;
     public float velocidadDeGiro = 10f;
+
+    [Header("Wobble de Caminata (Visual)")]
+    public bool activarBamboleo = true;
+    public float velocidadBamboleo = 12f; 
+    public float inclinacionBamboleo = 5f; 
 
     [Header("Estado")]
     public EstadoCuy estadoActual = EstadoCuy.Quieto;
@@ -65,7 +94,7 @@ public class ControladorCuy : MonoBehaviour
 
         cuerpoFisico.bodyType = RigidbodyType2D.Dynamic;
         cuerpoFisico.gravityScale = 0f;
-        cuerpoFisico.freezeRotation = false; // Permitimos rotar físicamente mediante MoveRotation
+        cuerpoFisico.freezeRotation = false;
         cuerpoFisico.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
         if (capacidadMochila <= 0)
@@ -80,6 +109,16 @@ public class ControladorCuy : MonoBehaviour
             nuevoPunto.transform.localPosition = new Vector3(0, 0.2f, 0);
             puntoDeCarga = nuevoPunto.transform;
         }
+
+        if (renderizadorSprite != null)
+        {
+            renderizadorSprite.sortingOrder = 5;
+        }
+
+        Texture2D tex = new Texture2D(1, 1);
+        tex.SetPixel(0, 0, Color.white);
+        tex.Apply();
+        spriteGotaGenerica = Sprite.Create(tex, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f), 1f);
     }
 
     private void Update()
@@ -102,13 +141,45 @@ public class ControladorCuy : MonoBehaviour
             tiempoEsperaRecogida -= Time.deltaTime;
         }
 
-        bool presionandoShift = false;
+        if (temporizadorCooldown > 0)
+        {
+            temporizadorCooldown -= Time.deltaTime;
+        }
+
+        if (estaDasheando)
+        {
+            temporizadorImpulso -= Time.deltaTime;
+            if (temporizadorImpulso <= 0f)
+            {
+                estaDasheando = false;
+            }
+        }
+
+        bool quiereDashear = false;
         if (Keyboard.current != null)
+        {
+            quiereDashear = Keyboard.current.spaceKey.wasPressedThisFrame;
+        }
+
+        if (quiereDashear && permitirImpulso && temporizadorCooldown <= 0f && entradaMovimiento.magnitude > 0.1f)
+        {
+            estaDasheando = true;
+            temporizadorImpulso = duracionImpulso;
+            temporizadorCooldown = cooldownImpulso;
+            estadoActual = EstadoCuy.Deslizando;
+        }
+
+        bool presionandoShift = false;
+        if (Keyboard.current != null && !estaDasheando)
         {
             presionandoShift = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
         }
 
-        if (presionandoShift)
+        if (estaDasheando)
+        {
+            estadoActual = EstadoCuy.Deslizando;
+        }
+        else if (presionandoShift)
         {
             estadoActual = EstadoCuy.Oculto;
         }
@@ -122,6 +193,40 @@ public class ControladorCuy : MonoBehaviour
             estadoActual = (mochilaInsumos.Count > 0) ? EstadoCuy.CargandoComida : EstadoCuy.Quieto;
         }
 
+        if (estaEmpapado)
+        {
+            if (estaSacudiendose)
+            {
+                temporizadorSacudida -= Time.deltaTime;
+
+                temporizadorBurstGotas -= Time.deltaTime;
+                if (temporizadorBurstGotas <= 0f)
+                {
+                    temporizadorBurstGotas = 0.06f;
+                    EmitirBurstGotas();
+                }
+
+                if (temporizadorSacudida <= 0f)
+                {
+                    estaSacudiendose = false;
+                    estaEmpapado = false;
+                }
+            }
+            else
+            {
+                temporizadorEmpapado -= Time.deltaTime;
+                
+                if (temporizadorEmpapado <= 0.6f && temporizadorEmpapado > 0f)
+                {
+                    estaSacudiendose = true;
+                    temporizadorSacudida = 0.6f;
+                    temporizadorBurstGotas = 0f;
+                }
+
+                EmitirGotitaAgua();
+            }
+        }
+
         ActualizarEfectoVisualSigilo(presionandoShift);
         ActualizarAnimador();
     }
@@ -130,21 +235,44 @@ public class ControladorCuy : MonoBehaviour
     {
         float velocidadActualMaxima = velocidadMaxima;
 
-        if (estadoActual == EstadoCuy.Oculto)
+        if (estaDasheando)
         {
-            velocidadActualMaxima = velocidadMaxima * 0.5f;
+            velocidadActualMaxima *= multiplicadorImpulso;
+            velocidadObjetivo = entradaMovimiento * velocidadActualMaxima;
+            cuerpoFisico.linearVelocity = velocidadObjetivo;
         }
-        else if (estaRalentizado)
+        else
         {
-            velocidadActualMaxima = velocidadMaxima * 0.4f;
+            float multiplicadorDeCarga = 1f - (mochilaInsumos.Count * penalizacionVelocidadPorInsumo);
+            velocidadActualMaxima *= Mathf.Clamp(multiplicadorDeCarga, 0.5f, 1f);
+
+            if (estadoActual == EstadoCuy.Oculto)
+            {
+                velocidadActualMaxima *= 0.5f;
+            }
+            else if (estaRalentizado)
+            {
+                velocidadActualMaxima *= 0.4f;
+            }
+
+            if (estaEmpapado)
+            {
+                if (estaSacudiendose)
+                {
+                    velocidadActualMaxima *= 0.15f; 
+                }
+                else
+                {
+                    velocidadActualMaxima *= 0.5f; 
+                }
+            }
+
+            velocidadObjetivo = entradaMovimiento * velocidadActualMaxima;
+            float tasaCambioVelocidad = (entradaMovimiento.magnitude > 0.01f) ? fuerzaAceleracion : fuerzaDesaceleracion;
+            velocidadActual = Vector2.MoveTowards(cuerpoFisico.linearVelocity, velocidadObjetivo, tasaCambioVelocidad * Time.fixedDeltaTime);
+            cuerpoFisico.linearVelocity = velocidadActual;
         }
 
-        velocidadObjetivo = entradaMovimiento * velocidadActualMaxima;
-        float tasaCambioVelocidad = (entradaMovimiento.magnitude > 0.01f) ? fuerzaAceleracion : fuerzaDesaceleracion;
-        velocidadActual = Vector2.MoveTowards(cuerpoFisico.linearVelocity, velocidadObjetivo, tasaCambioVelocidad * Time.fixedDeltaTime);
-        cuerpoFisico.linearVelocity = velocidadActual;
-
-        // Rotar físicamente en FixedUpdate para evitar conflictos con el motor de físicas
         GirarHaciaMovimientoFisico();
     }
 
@@ -187,6 +315,17 @@ public class ControladorCuy : MonoBehaviour
                 colorSprite.b = 0.6f;
                 colorSprite.a = 0.8f;
             }
+            else if (estaDasheando)
+            {
+                colorSprite = Color.white;
+            }
+            else if (estaEmpapado)
+            {
+                colorSprite.r = 0.6f;
+                colorSprite.g = 0.8f;
+                colorSprite.b = 1.0f;
+                colorSprite.a = 1.0f;
+            }
             else
             {
                 colorSprite.r = 1f;
@@ -198,15 +337,63 @@ public class ControladorCuy : MonoBehaviour
         }
     }
 
+    private void EmitirGotitaAgua()
+    {
+        if (cuerpoFisico.linearVelocity.magnitude < 0.2f) return;
+
+        temporizadorGotitas -= Time.deltaTime;
+        if (temporizadorGotitas <= 0f)
+        {
+            temporizadorGotitas = 0.15f; 
+
+            GameObject gota = new GameObject("GotitaAgua");
+            gota.transform.position = transform.position + new Vector3(Random.Range(-0.2f, 0.2f), -0.2f, 0f);
+            gota.transform.localScale = new Vector3(0.08f, 0.08f, 1f);
+
+            SpriteRenderer sr = gota.AddComponent<SpriteRenderer>();
+            sr.sprite = spriteGotaGenerica;
+            sr.color = new Color(0.2f, 0.6f, 1.0f, 0.8f); 
+            sr.sortingOrder = sortingOrderPlayer() - 1; 
+
+            gota.AddComponent<EfectoGotitaAgua>();
+        }
+    }
+
+    private void EmitirBurstGotas()
+    {
+        int gotas = Random.Range(5, 9);
+        for (int i = 0; i < gotas; i++)
+        {
+            GameObject gota = new GameObject("GotitaSacudida");
+            gota.transform.position = transform.position + new Vector3(Random.Range(-0.1f, 0.1f), -0.1f, 0f);
+            gota.transform.localScale = new Vector3(0.07f, 0.07f, 1f);
+
+            SpriteRenderer sr = gota.AddComponent<SpriteRenderer>();
+            sr.sprite = spriteGotaGenerica;
+            sr.color = new Color(0.3f, 0.7f, 1.0f, 0.9f);
+            sr.sortingOrder = sortingOrderPlayer() + 1; 
+
+            EfectoGotitaAgua scriptGota = gota.AddComponent<EfectoGotitaAgua>();
+            Vector2 dirAleatoria = new Vector2(Random.Range(-1.5f, 1.5f), Random.Range(1.5f, 3.5f)).normalized;
+            scriptGota.EstablecerVelocidadBurst(dirAleatoria * Random.Range(2.0f, 3.5f));
+        }
+    }
+
+    private int sortingOrderPlayer()
+    {
+        if (renderizadorSprite != null) return renderizadorSprite.sortingOrder;
+        return 5;
+    }
+
     private void GirarHaciaMovimientoFisico()
     {
-        if (entradaMovimiento.magnitude > 0.1f)
+        float anguloDestino = cuerpoFisico.rotation;
+
+        if (entradaMovimiento.magnitude > 0.1f && !estaSacudiendose)
         {
             if (rotarHaciaDireccion)
             {
-                float anguloDestino = Mathf.Atan2(entradaMovimiento.y, entradaMovimiento.x) * Mathf.Rad2Deg - 90f;
-                float anguloSuave = Mathf.LerpAngle(cuerpoFisico.rotation, anguloDestino, velocidadDeGiro * Time.fixedDeltaTime);
-                cuerpoFisico.MoveRotation(anguloSuave);
+                anguloDestino = Mathf.Atan2(entradaMovimiento.y, entradaMovimiento.x) * Mathf.Rad2Deg - 90f;
             }
             else if (renderizadorSprite != null)
             {
@@ -214,6 +401,20 @@ public class ControladorCuy : MonoBehaviour
                 else if (entradaMovimiento.x > 0.1f) renderizadorSprite.flipX = false;
             }
         }
+
+        float bamboleo = 0f;
+        if (estaSacudiendose)
+        {
+            bamboleo = Mathf.Sin(Time.time * 20f) * 12f;
+        }
+        else if (activarBamboleo && cuerpoFisico.linearVelocity.magnitude > 0.2f && !estaDasheando)
+        {
+            float modVelocidadBamboleo = (estadoActual == EstadoCuy.Oculto) ? 0.6f : 1f;
+            bamboleo = Mathf.Sin(Time.time * velocidadBamboleo * modVelocidadBamboleo) * inclinacionBamboleo;
+        }
+
+        float anguloSuave = Mathf.LerpAngle(cuerpoFisico.rotation, anguloDestino, velocidadDeGiro * Time.fixedDeltaTime);
+        cuerpoFisico.MoveRotation(anguloSuave + bamboleo);
     }
 
     private void ActualizarAnimador()
@@ -230,6 +431,7 @@ public class ControladorCuy : MonoBehaviour
         componenteAnimador.SetBool("Cargando", mochilaInsumos.Count > 0);
         componenteAnimador.SetBool("Agotado", estadoActual == EstadoCuy.Agotado);
         componenteAnimador.SetBool("Oculto", estadoActual == EstadoCuy.Oculto);
+        componenteAnimador.SetBool("Deslizando", estadoActual == EstadoCuy.Deslizando);
     }
 
     public void SoltarInsumosPorGolpe()
@@ -373,10 +575,74 @@ public class ControladorCuy : MonoBehaviour
         }
     }
 
+    public void Morir()
+    {
+        if (estadoActual == EstadoCuy.Agotado) return;
+
+        estadoActual = EstadoCuy.Agotado;
+        cuerpoFisico.linearVelocity = Vector2.zero;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ProcesarMuerteJugador();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void CambiarEstadoOculto(bool estaOculto)
     {
         if (estadoActual == EstadoCuy.Agotado) return;
 
         estadoActual = estaOculto ? EstadoCuy.Oculto : EstadoCuy.Quieto;
+    }
+}
+
+public class EfectoGotitaAgua : MonoBehaviour
+{
+    private float tiempoVida = 0.4f;
+    private float velocidadCaida = 1.5f;
+    private SpriteRenderer sr;
+    private Vector2 velocidadBurst;
+    private bool esBurst = false;
+
+    void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
+
+    public void EstablecerVelocidadBurst(Vector2 vel)
+    {
+        velocidadBurst = vel;
+        esBurst = true;
+        tiempoVida = 0.35f; 
+    }
+
+    void Update()
+    {
+        if (esBurst)
+        {
+            velocidadBurst.y -= 9.8f * Time.deltaTime;
+            transform.Translate(velocidadBurst * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector3.down * velocidadCaida * Time.deltaTime);
+        }
+
+        tiempoVida -= Time.deltaTime;
+        if (sr != null)
+        {
+            Color c = sr.color;
+            c.a = Mathf.Clamp01(tiempoVida / (esBurst ? 0.35f : 0.4f)) * 0.8f;
+            sr.color = c;
+        }
+
+        if (tiempoVida <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
