@@ -1,0 +1,347 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager Instance { get; private set; }
+
+    [Header("Sistema de Vidas")]
+    public int vidasMaximas = 5;
+    public int vidasActuales = 5;
+
+    [Header("Configuración de Respawn")]
+    [Tooltip("Punto donde reaparecerá el cuy. Si se deja vacío, tomará la posición inicial del cuy al comenzar el nivel.")]
+    public Transform puntoRespawn;
+
+    [Header("Sprites de UI Personalizados")]
+    [Tooltip("Sprite de la tablita con el cuy corazón para mostrar las vidas")]
+    public Sprite spriteHudTablita;
+
+    private ControladorCuy cuyJugador;
+    private Vector3 posicionInicialCuy;
+
+    private Canvas canvasUI;
+    private Image imagenNegraFade;
+    private Text textoVidasFade;
+    private Text textoHUDVidas;
+
+    private bool procesandoMuerte = false;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        vidasActuales = vidasMaximas;
+    }
+
+    private void Start()
+    {
+        BuscarJugadorYGuardarPosicion();
+        CrearElementosUIDinamicos();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        BuscarJugadorYGuardarPosicion();
+        CrearElementosUIDinamicos();
+        ActualizarHUDVidas();
+    }
+
+    private void BuscarJugadorYGuardarPosicion()
+    {
+        cuyJugador = Object.FindAnyObjectByType<ControladorCuy>();
+        if (cuyJugador != null)
+        {
+            posicionInicialCuy = cuyJugador.transform.position;
+        }
+        procesandoMuerte = false;
+    }
+
+    private void CrearElementosUIDinamicos()
+    {
+        if (canvasUI != null)
+        {
+            Destroy(canvasUI.gameObject);
+        }
+
+        GameObject goCanvas = new GameObject("GameManager_CanvasUI");
+        DontDestroyOnLoad(goCanvas);
+
+        canvasUI = goCanvas.AddComponent<Canvas>();
+        canvasUI.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvasUI.sortingOrder = 999;
+
+        CanvasScaler scaler = goCanvas.AddComponent<CanvasScaler>();
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.referenceResolution = new Vector2(1920, 1080);
+
+        goCanvas.AddComponent<GraphicRaycaster>();
+
+        GameObject goFade = new GameObject("ImageFade");
+        goFade.transform.SetParent(canvasUI.transform, false);
+
+        imagenNegraFade = goFade.AddComponent<Image>();
+        imagenNegraFade.color = new Color(0f, 0f, 0f, 0f);
+
+        RectTransform rtFade = imagenNegraFade.rectTransform;
+        rtFade.anchorMin = Vector2.zero;
+        rtFade.anchorMax = Vector2.one;
+        rtFade.sizeDelta = Vector2.zero;
+
+        GameObject goTextFade = new GameObject("TextFadeVidas");
+        goTextFade.transform.SetParent(goFade.transform, false);
+
+        textoVidasFade = goTextFade.AddComponent<Text>();
+        textoVidasFade.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        textoVidasFade.fontSize = 65;
+        textoVidasFade.alignment = TextAnchor.MiddleCenter;
+        textoVidasFade.color = new Color(1f, 1f, 1f, 0f);
+        textoVidasFade.text = "Vidas Restantes: 5";
+
+        RectTransform rtTextFade = textoVidasFade.rectTransform;
+        rtTextFade.anchorMin = Vector2.zero;
+        rtTextFade.anchorMax = Vector2.one;
+        rtTextFade.sizeDelta = Vector2.zero;
+
+        GameObject goHUD = new GameObject("HUD_Vidas");
+        goHUD.transform.SetParent(canvasUI.transform, false);
+
+        RectTransform rtHUD = goHUD.AddComponent<RectTransform>();
+        rtHUD.anchorMin = new Vector2(0f, 1f);
+        rtHUD.anchorMax = new Vector2(0f, 1f);
+        rtHUD.pivot = new Vector2(0f, 1f);
+        rtHUD.anchoredPosition = new Vector3(30f, -30f, 0f);
+
+        if (spriteHudTablita != null)
+        {
+            Image imgTablita = goHUD.AddComponent<Image>();
+            imgTablita.sprite = spriteHudTablita;
+            imgTablita.color = Color.white;
+            imgTablita.preserveAspect = false;
+
+            rtHUD.sizeDelta = new Vector2(280f, 140f);
+
+            GameObject goHUDText = new GameObject("HUD_Text");
+            goHUDText.transform.SetParent(goHUD.transform, false);
+
+            textoHUDVidas = goHUDText.AddComponent<Text>();
+            textoHUDVidas.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            textoHUDVidas.fontSize = 42;
+            textoHUDVidas.fontStyle = FontStyle.Bold;
+            textoHUDVidas.alignment = TextAnchor.MiddleCenter;
+            textoHUDVidas.color = Color.white;
+
+            Shadow shadow = goHUDText.AddComponent<Shadow>();
+            shadow.effectColor = new Color(0f, 0f, 0f, 0.9f);
+            shadow.effectDistance = new Vector2(3f, -3f);
+
+            RectTransform rtHUDText = textoHUDVidas.rectTransform;
+            rtHUDText.anchorMin = new Vector2(0.52f, 0f);
+            rtHUDText.anchorMax = new Vector2(1f, 1f);
+            rtHUDText.pivot = new Vector2(0.5f, 0.5f);
+            rtHUDText.anchoredPosition = Vector2.zero;
+            rtHUDText.sizeDelta = Vector2.zero;
+        }
+        else
+        {
+            textoHUDVidas = goHUD.AddComponent<Text>();
+            textoHUDVidas.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            textoHUDVidas.fontSize = 36;
+            textoHUDVidas.alignment = TextAnchor.UpperLeft;
+            textoHUDVidas.color = Color.white;
+
+            Shadow shadow = goHUD.AddComponent<Shadow>();
+            shadow.effectColor = Color.black;
+            shadow.effectDistance = new Vector2(2f, -2f);
+
+            rtHUD.sizeDelta = new Vector2(400f, 100f);
+        }
+
+        ActualizarHUDVidas();
+    }
+
+    public void ActualizarHUDVidas()
+    {
+        if (textoHUDVidas != null)
+        {
+            if (spriteHudTablita != null)
+            {
+                textoHUDVidas.text = $"x{vidasActuales}";
+            }
+            else
+            {
+                textoHUDVidas.text = $"Vidas: {vidasActuales} / {vidasMaximas}";
+            }
+        }
+    }
+
+    public void ProcesarMuerteJugador()
+    {
+        if (procesandoMuerte) return;
+        procesandoMuerte = true;
+
+        vidasActuales--;
+        ActualizarHUDVidas();
+
+        if (vidasActuales > 0)
+        {
+            StartCoroutine(RutinaRespawn());
+        }
+        else
+        {
+            StartCoroutine(RutinaGameOver());
+        }
+    }
+
+    private IEnumerator RutinaRespawn()
+    {
+        if (cuyJugador != null)
+        {
+            cuyJugador.estadoActual = ControladorCuy.EstadoCuy.Agotado;
+            cuyJugador.entradaMovimiento = Vector2.zero;
+            Rigidbody2D rb = cuyJugador.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Kinematic;
+            }
+        }
+
+        float t = 0f;
+        if (textoVidasFade != null)
+        {
+            textoVidasFade.text = $"Intentos Restantes: {vidasActuales}";
+        }
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 2f;
+            if (imagenNegraFade != null) imagenNegraFade.color = new Color(0f, 0f, 0f, Mathf.Clamp01(t));
+            yield return null;
+        }
+
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 2f;
+            if (textoVidasFade != null) textoVidasFade.color = new Color(1f, 1f, 1f, Mathf.Clamp01(t));
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1.0f);
+
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 3f;
+            if (textoVidasFade != null) textoVidasFade.color = new Color(1f, 1f, 1f, 1f - Mathf.Clamp01(t));
+            yield return null;
+        }
+
+        if (cuyJugador != null)
+        {
+            cuyJugador.SoltarInsumosPorGolpe();
+            cuyJugador.transform.SetParent(null);
+
+            Vector3 destino = (puntoRespawn != null) ? puntoRespawn.position : posicionInicialCuy;
+            cuyJugador.transform.position = destino;
+            cuyJugador.transform.rotation = Quaternion.identity;
+
+            Rigidbody2D rb = cuyJugador.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                rb.linearVelocity = Vector2.zero;
+            }
+
+            Collider2D col = cuyJugador.GetComponent<Collider2D>();
+            if (col != null)
+            {
+                col.enabled = true;
+            }
+
+            cuyJugador.estaEmpapado = false;
+            cuyJugador.temporizadorEmpapado = 0f;
+            cuyJugador.estadoActual = ControladorCuy.EstadoCuy.Quieto;
+        }
+
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 2f;
+            if (imagenNegraFade != null) imagenNegraFade.color = new Color(0f, 0f, 0f, 1f - Mathf.Clamp01(t));
+            yield return null;
+        }
+
+        procesandoMuerte = false;
+    }
+
+    private IEnumerator RutinaGameOver()
+    {
+        if (cuyJugador != null)
+        {
+            cuyJugador.estadoActual = ControladorCuy.EstadoCuy.Agotado;
+            cuyJugador.entradaMovimiento = Vector2.zero;
+            Rigidbody2D rb = cuyJugador.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.bodyType = RigidbodyType2D.Kinematic;
+            }
+        }
+
+        float t = 0f;
+        if (textoVidasFade != null)
+        {
+            textoVidasFade.text = "GAME OVER\n\nPresiona cualquier tecla para reiniciar";
+            textoVidasFade.color = Color.clear;
+        }
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 1.5f;
+            if (imagenNegraFade != null) imagenNegraFade.color = new Color(0.1f, 0f, 0f, Mathf.Clamp01(t) * 0.95f);
+            yield return null;
+        }
+
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 2f;
+            if (textoVidasFade != null) textoVidasFade.color = new Color(1f, 0.1f, 0.1f, Mathf.Clamp01(t));
+            yield return null;
+        }
+
+        bool reiniciado = false;
+        while (!reiniciado)
+        {
+            if (Input.anyKeyDown)
+            {
+                reiniciado = true;
+            }
+            yield return null;
+        }
+
+        vidasActuales = vidasMaximas;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+}

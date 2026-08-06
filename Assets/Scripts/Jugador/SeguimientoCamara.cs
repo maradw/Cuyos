@@ -24,6 +24,10 @@ public class SeguimientoCamara : MonoBehaviour
     public float limiteInferior, limiteSuperior;
 
     private Vector3 velocidadReferenciaInterna = Vector3.zero;
+    
+    private float duracionSacudida = 0f;
+    private float magnitudSacudida = 0f;
+    private Vector3 offsetSacudida = Vector3.zero;
 
     private void Start()
     {
@@ -39,6 +43,17 @@ public class SeguimientoCamara : MonoBehaviour
 
     private void Update()
     {
+        if (duracionSacudida > 0f)
+        {
+            offsetSacudida = Random.insideUnitSphere * magnitudSacudida;
+            offsetSacudida.z = 0f; 
+            duracionSacudida -= Time.deltaTime;
+        }
+        else
+        {
+            offsetSacudida = Vector3.zero;
+        }
+
         if (momentoDeSeguimiento == MomentoActualizacion.Update)
         {
             EjecutarSeguimiento();
@@ -65,20 +80,34 @@ public class SeguimientoCamara : MonoBehaviour
     {
         if (objetivoASeguir == null) return;
 
-        Vector3 posicionDestino = objetivoASeguir.position + desplazamientoCamara;
-
-        if (delimitarBordes)
+        try
         {
-            float xLimitado = Mathf.Clamp(posicionDestino.x, limiteIzquierdo, limiteDerecho);
-            float yLimitado = Mathf.Clamp(posicionDestino.y, limiteInferior, limiteSuperior);
-            posicionDestino = new Vector3(xLimitado, yLimitado, posicionDestino.z);
-        }
+            Vector3 posicionDestino = objetivoASeguir.position + desplazamientoCamara;
 
-        transform.position = Vector3.SmoothDamp(
-            transform.position, 
-            posicionDestino, 
-            ref velocidadReferenciaInterna, 
-            tiempoDeSuavizado
-        );
+            if (delimitarBordes)
+            {
+                float xLimitado = Mathf.Clamp(posicionDestino.x, limiteIzquierdo, limiteDerecho);
+                float yLimitado = Mathf.Clamp(posicionDestino.y, limiteInferior, limiteSuperior);
+                posicionDestino = new Vector3(xLimitado, yLimitado, posicionDestino.z);
+            }
+
+            Vector3 posicionSuave = Vector3.SmoothDamp(
+                transform.position, 
+                posicionDestino, 
+                ref velocidadReferenciaInterna, 
+                tiempoDeSuavizado
+            );
+
+            transform.position = posicionSuave + offsetSacudida;
+        }
+        catch (System.Exception)
+        {
+        }
+    }
+
+    public void SacudirCamara(float duracion, float magnitud)
+    {
+        duracionSacudida = duracion;
+        magnitudSacudida = magnitud;
     }
 }

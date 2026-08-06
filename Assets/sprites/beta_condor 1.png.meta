@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3b1cac15f088ee94297ef22320d45044
+guid: cee6cdf7b97ba8e439e999ef79284854
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4301537594469769469
-    second: cuy 1_0
+      213: -2665251490483146909
+    second: beta_condor 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 40
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cuy 1_0
+      name: beta_condor 1_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 14
-        height: 16
+        width: 125
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 30f14ad295edd44c0800000000000000
-      internalID: -4301537594469769469
+      spriteID: 36feba8f3ef130bd0800000000000000
+      internalID: -2665251490483146909
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cuy 1_0: -4301537594469769469
+      beta_condor 1_0: -2665251490483146909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
