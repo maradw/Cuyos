@@ -1,0 +1,1989 @@
+fileFormatVersion: 2
+guid: bc5259408fff92a4aa29179b227243ff
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8923633275241221448
+    second: cuy_run300x158_0
+  - first:
+      213: 7079090338249073341
+    second: cuy_run300x158_1
+  - first:
+      213: 5242661611607334992
+    second: cuy_run300x158_2
+  - first:
+      213: 8656151299676658525
+    second: cuy_run300x158_3
+  - first:
+      213: 467847286866170330
+    second: cuy_run300x158_4
+  - first:
+      213: -5851440689895038284
+    second: cuy_run300x158_5
+  - first:
+      213: 3562852332799052286
+    second: cuy_run300x158_6
+  - first:
+      213: 2615682395395181632
+    second: cuy_run300x158_7
+  - first:
+      213: 1338178131509204384
+    second: cuy_run300x158_8
+  - first:
+      213: -5598357182550967989
+    second: cuy_run300x158_9
+  - first:
+      213: -7321328256816410485
+    second: cuy_run300x158_10
+  - first:
+      213: -1823220999480131187
+    second: cuy_run300x158_11
+  - first:
+      213: -1711863996063983064
+    second: cuy_run300x158_12
+  - first:
+      213: 1136376318132546509
+    second: cuy_run300x158_13
+  - first:
+      213: 1577006250190975919
+    second: cuy_run300x158_14
+  - first:
+      213: 4560466162293885783
+    second: cuy_run300x158_15
+  - first:
+      213: -2450149914005368347
+    second: cuy_run300x158_16
+  - first:
+      213: 8268082434354119998
+    second: cuy_run300x158_17
+  - first:
+      213: -2753815559715303272
+    second: cuy_run300x158_18
+  - first:
+      213: 2117039679728196060
+    second: cuy_run300x158_19
+  - first:
+      213: -6605064549834011958
+    second: cuy_run300x158_20
+  - first:
+      213: 6637571848705659248
+    second: cuy_run300x158_21
+  - first:
+      213: 8573176572802513541
+    second: cuy_run300x158_22
+  - first:
+      213: -2902635853311336751
+    second: cuy_run300x158_23
+  - first:
+      213: -3039979190109300020
+    second: cuy_run300x158_24
+  - first:
+      213: 8212193746871973081
+    second: cuy_run300x158_25
+  - first:
+      213: 7024129120239512933
+    second: cuy_run300x158_26
+  - first:
+      213: -6933509225823728670
+    second: cuy_run300x158_27
+  - first:
+      213: -3082323363174416140
+    second: cuy_run300x158_28
+  - first:
+      213: -8715330386258142360
+    second: cuy_run300x158_29
+  - first:
+      213: -7475401987635615758
+    second: cuy_run300x158_30
+  - first:
+      213: -608211502282572812
+    second: cuy_run300x158_31
+  - first:
+      213: -6917256065970036815
+    second: cuy_run300x158_32
+  - first:
+      213: 1061668088740094480
+    second: cuy_run300x158_33
+  - first:
+      213: 2297446852933414694
+    second: cuy_run300x158_34
+  - first:
+      213: 251680578840120723
+    second: cuy_run300x158_35
+  - first:
+      213: -137889878647064359
+    second: cuy_run300x158_36
+  - first:
+      213: -8335241782282280086
+    second: cuy_run300x158_37
+  - first:
+      213: -8143380669761377807
+    second: cuy_run300x158_38
+  - first:
+      213: 7128557482128311164
+    second: cuy_run300x158_39
+  - first:
+      213: -3697625177583375997
+    second: cuy_run300x158_40
+  - first:
+      213: -102518508748251972
+    second: cuy_run300x158_41
+  - first:
+      213: -253994080083257041
+    second: cuy_run300x158_42
+  - first:
+      213: 9048740729782952539
+    second: cuy_run300x158_43
+  - first:
+      213: -7900946143779331414
+    second: cuy_run300x158_44
+  - first:
+      213: 4503589056326731189
+    second: cuy_run300x158_45
+  - first:
+      213: 6293907870073551437
+    second: cuy_run300x158_46
+  - first:
+      213: 4320855715366400073
+    second: cuy_run300x158_47
+  - first:
+      213: 5505016001037407087
+    second: cuy_run300x158_48
+  - first:
+      213: 4921320500522580884
+    second: cuy_run300x158_49
+  - first:
+      213: 4262581395723603118
+    second: cuy_run300x158_50
+  - first:
+      213: -3756210066030978564
+    second: cuy_run300x158_51
+  - first:
+      213: 7713375427999412674
+    second: cuy_run300x158_52
+  - first:
+      213: -566288066542813307
+    second: cuy_run300x158_53
+  - first:
+      213: 7319182849261870721
+    second: cuy_run300x158_54
+  - first:
+      213: -3786643178256987496
+    second: cuy_run300x158_55
+  - first:
+      213: -7636522230870443760
+    second: cuy_run300x158_56
+  - first:
+      213: -4560135090789548359
+    second: cuy_run300x158_57
+  - first:
+      213: -914959937283802005
+    second: cuy_run300x158_58
+  - first:
+      213: 1001660885418313431
+    second: cuy_run300x158_59
+  - first:
+      213: -4152686908439458168
+    second: cuy_run300x158_60
+  - first:
+      213: 3806706134039089739
+    second: cuy_run300x158_61
+  - first:
+      213: -4535397410253951584
+    second: cuy_run300x158_62
+  - first:
+      213: 2393499756611108523
+    second: cuy_run300x158_63
+  - first:
+      213: -1908449822145210271
+    second: cuy_run300x158_64
+  - first:
+      213: 5259791754786815457
+    second: cuy_run300x158_65
+  - first:
+      213: 4930887617486128393
+    second: cuy_run300x158_66
+  - first:
+      213: -533554311572532988
+    second: cuy_run300x158_67
+  - first:
+      213: -4249397690934486088
+    second: cuy_run300x158_68
+  - first:
+      213: 2717274650294999177
+    second: cuy_run300x158_69
+  - first:
+      213: 2214408407378677785
+    second: cuy_run300x158_70
+  - first:
+      213: 1796072399094743753
+    second: cuy_run300x158_71
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cuy_run300x158_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 305
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b2346bc0d2e82480800000000000000
+      internalID: -8923633275241221448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_1
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 63
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db26c30f72bfd3260800000000000000
+      internalID: 7079090338249073341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_2
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 30
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 050ae6d75fca1c840800000000000000
+      internalID: 5242661611607334992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_3
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 29
+        width: 19
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5b534baeb3d02870800000000000000
+      internalID: 8656151299676658525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_4
+      rect:
+        serializedVersion: 2
+        x: 1199
+        y: 29
+        width: 25
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad1d9cee0a02e7600800000000000000
+      internalID: 467847286866170330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_5
+      rect:
+        serializedVersion: 2
+        x: 1501
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b22a8ed1b18bcea0800000000000000
+      internalID: -5851440689895038284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_6
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef9c8a3e15bc17130800000000000000
+      internalID: 3562852332799052286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_7
+      rect:
+        serializedVersion: 2
+        x: 2109
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04cc5c6b745cc4420800000000000000
+      internalID: 2615682395395181632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_8
+      rect:
+        serializedVersion: 2
+        x: 2416
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a55dceabe9229210800000000000000
+      internalID: 1338178131509204384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_9
+      rect:
+        serializedVersion: 2
+        x: 2722
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b49fa48cdc3ae42b0800000000000000
+      internalID: -5598357182550967989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_10
+      rect:
+        serializedVersion: 2
+        x: 3025
+        y: 29
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b809d609dba656a90800000000000000
+      internalID: -7321328256816410485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_11
+      rect:
+        serializedVersion: 2
+        x: 3330
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8144fa292e92b6e0800000000000000
+      internalID: -1823220999480131187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_12
+      rect:
+        serializedVersion: 2
+        x: 3636
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82a53d2f3cc3e38e0800000000000000
+      internalID: -1711863996063983064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_13
+      rect:
+        serializedVersion: 2
+        x: 3940
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcbe4759d3835cf00800000000000000
+      internalID: 1136376318132546509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_14
+      rect:
+        serializedVersion: 2
+        x: 4244
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa3343744d6a2e510800000000000000
+      internalID: 1577006250190975919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_15
+      rect:
+        serializedVersion: 2
+        x: 4550
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75b47bdefc70a4f30800000000000000
+      internalID: 4560466162293885783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_16
+      rect:
+        serializedVersion: 2
+        x: 4855
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e1914972a15ffdd0800000000000000
+      internalID: -2450149914005368347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_17
+      rect:
+        serializedVersion: 2
+        x: 5163
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e350359fa212eb270800000000000000
+      internalID: 8268082434354119998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_18
+      rect:
+        serializedVersion: 2
+        x: 5473
+        y: 29
+        width: 25
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 890d93ab65b78c9d0800000000000000
+      internalID: -2753815559715303272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_19
+      rect:
+        serializedVersion: 2
+        x: 5779
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd91b954f5c316d10800000000000000
+      internalID: 2117039679728196060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_20
+      rect:
+        serializedVersion: 2
+        x: 6085
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aca4e9c79c81654a0800000000000000
+      internalID: -6605064549834011958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_21
+      rect:
+        serializedVersion: 2
+        x: 6389
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 071db35dd646d1c50800000000000000
+      internalID: 6637571848705659248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_22
+      rect:
+        serializedVersion: 2
+        x: 6693
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a389a9baa0af670800000000000000
+      internalID: 8573176572802513541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_23
+      rect:
+        serializedVersion: 2
+        x: 6997
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1de901bf114c7b7d0800000000000000
+      internalID: -2902635853311336751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_24
+      rect:
+        serializedVersion: 2
+        x: 7300
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cca94f87803dfc5d0800000000000000
+      internalID: -3039979190109300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_25
+      rect:
+        serializedVersion: 2
+        x: 7602
+        y: 29
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d4fcf4e3b297f170800000000000000
+      internalID: 8212193746871973081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_26
+      rect:
+        serializedVersion: 2
+        x: 7908
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56d6a5c2838ba7160800000000000000
+      internalID: 7024129120239512933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_27
+      rect:
+        serializedVersion: 2
+        x: 8215
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eb02eb281a37cf90800000000000000
+      internalID: -6933509225823728670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_28
+      rect:
+        serializedVersion: 2
+        x: 8521
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f00a176b336935d0800000000000000
+      internalID: -3082323363174416140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_29
+      rect:
+        serializedVersion: 2
+        x: 8822
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86b5ae2803dec0780800000000000000
+      internalID: -8715330386258142360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_30
+      rect:
+        serializedVersion: 2
+        x: 9129
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f7eab5af79024890800000000000000
+      internalID: -7475401987635615758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_31
+      rect:
+        serializedVersion: 2
+        x: 9436
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fbf3227cd23f87f0800000000000000
+      internalID: -608211502282572812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_32
+      rect:
+        serializedVersion: 2
+        x: 9741
+        y: 29
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bf9077d148f000a0800000000000000
+      internalID: -6917256065970036815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_33
+      rect:
+        serializedVersion: 2
+        x: 10047
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 012a8b2708dcbbe00800000000000000
+      internalID: 1061668088740094480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_34
+      rect:
+        serializedVersion: 2
+        x: 10350
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62f6f678dbb22ef10800000000000000
+      internalID: 2297446852933414694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_35
+      rect:
+        serializedVersion: 2
+        x: 10656
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39d41aa27262e7300800000000000000
+      internalID: 251680578840120723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_36
+      rect:
+        serializedVersion: 2
+        x: 10957
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d8be1dc2ed161ef0800000000000000
+      internalID: -137889878647064359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_37
+      rect:
+        serializedVersion: 2
+        x: 11261
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a632212d2c5435c80800000000000000
+      internalID: -8335241782282280086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_38
+      rect:
+        serializedVersion: 2
+        x: 11564
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f927142d66ecfe80800000000000000
+      internalID: -8143380669761377807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_39
+      rect:
+        serializedVersion: 2
+        x: 11867
+        y: 29
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c730633e249bde260800000000000000
+      internalID: 7128557482128311164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_40
+      rect:
+        serializedVersion: 2
+        x: 12172
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3892a99ed756facc0800000000000000
+      internalID: -3697625177583375997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_41
+      rect:
+        serializedVersion: 2
+        x: 12476
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbc582f95f7c39ef0800000000000000
+      internalID: -102518508748251972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_42
+      rect:
+        serializedVersion: 2
+        x: 12781
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f29d599dab1a97cf0800000000000000
+      internalID: -253994080083257041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_43
+      rect:
+        serializedVersion: 2
+        x: 13088
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b52625f50c5939d70800000000000000
+      internalID: 9048740729782952539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_44
+      rect:
+        serializedVersion: 2
+        x: 13392
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa26a8ed7533a5290800000000000000
+      internalID: -7900946143779331414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_45
+      rect:
+        serializedVersion: 2
+        x: 13698
+        y: 29
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b501bcb266ff7e30800000000000000
+      internalID: 4503589056326731189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_46
+      rect:
+        serializedVersion: 2
+        x: 14001
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4af4cc7cd3785750800000000000000
+      internalID: 6293907870073551437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_47
+      rect:
+        serializedVersion: 2
+        x: 14304
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94071285163c6fb30800000000000000
+      internalID: 4320855715366400073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_48
+      rect:
+        serializedVersion: 2
+        x: 14610
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f631da8d2eeb56c40800000000000000
+      internalID: 5505016001037407087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_49
+      rect:
+        serializedVersion: 2
+        x: 14913
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49bfe73cbea0c4440800000000000000
+      internalID: 4921320500522580884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_50
+      rect:
+        serializedVersion: 2
+        x: 15217
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eac4b4ef13bb72b30800000000000000
+      internalID: 4262581395723603118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_51
+      rect:
+        serializedVersion: 2
+        x: 15521
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf91a70a8d24fdbc0800000000000000
+      internalID: -3756210066030978564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_52
+      rect:
+        serializedVersion: 2
+        x: 15824
+        y: 29
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c1b125a51a6b0b60800000000000000
+      internalID: 7713375427999412674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_53
+      rect:
+        serializedVersion: 2
+        x: 16127
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58f3c29f0042428f0800000000000000
+      internalID: -566288066542813307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_54
+      rect:
+        serializedVersion: 2
+        x: 16431
+        y: 29
+        width: 26
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18e9260d506f29560800000000000000
+      internalID: 7319182849261870721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_55
+      rect:
+        serializedVersion: 2
+        x: 16736
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89a06d48714237bc0800000000000000
+      internalID: -3786643178256987496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_56
+      rect:
+        serializedVersion: 2
+        x: 17041
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 019f795bd7f950690800000000000000
+      internalID: -7636522230870443760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_57
+      rect:
+        serializedVersion: 2
+        x: 17342
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bef1b9ab4527b0c0800000000000000
+      internalID: -4560135090789548359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_58
+      rect:
+        serializedVersion: 2
+        x: 17645
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6c3c72e8c86d43f0800000000000000
+      internalID: -914959937283802005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_59
+      rect:
+        serializedVersion: 2
+        x: 17948
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d603cca44d96ed00800000000000000
+      internalID: 1001660885418313431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_60
+      rect:
+        serializedVersion: 2
+        x: 18251
+        y: 29
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88e0d073241be56c0800000000000000
+      internalID: -4152686908439458168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_61
+      rect:
+        serializedVersion: 2
+        x: 18555
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4253b36f0324d430800000000000000
+      internalID: 3806706134039089739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_62
+      rect:
+        serializedVersion: 2
+        x: 18859
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ad269eb5180f01c0800000000000000
+      internalID: -4535397410253951584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_63
+      rect:
+        serializedVersion: 2
+        x: 19162
+        y: 29
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baef9cae85b673120800000000000000
+      internalID: 2393499756611108523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_64
+      rect:
+        serializedVersion: 2
+        x: 19467
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16890678ff2d385e0800000000000000
+      internalID: -1908449822145210271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_65
+      rect:
+        serializedVersion: 2
+        x: 19770
+        y: 29
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1edb890cbb88ef840800000000000000
+      internalID: 5259791754786815457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_66
+      rect:
+        serializedVersion: 2
+        x: 20073
+        y: 29
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90502a3c9280e6440800000000000000
+      internalID: 4930887617486128393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_67
+      rect:
+        serializedVersion: 2
+        x: 20376
+        y: 29
+        width: 25
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40157563e2f6898f0800000000000000
+      internalID: -533554311572532988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_68
+      rect:
+        serializedVersion: 2
+        x: 20681
+        y: 29
+        width: 20
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bb1c7a705b1705c0800000000000000
+      internalID: -4249397690934486088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_69
+      rect:
+        serializedVersion: 2
+        x: 20985
+        y: 29
+        width: 16
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 988d100d5e2b5b520800000000000000
+      internalID: 2717274650294999177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_70
+      rect:
+        serializedVersion: 2
+        x: 21289
+        y: 29
+        width: 12
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 910d17dc6b82bbe10800000000000000
+      internalID: 2214408407378677785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cuy_run300x158_71
+      rect:
+        serializedVersion: 2
+        x: 21594
+        y: 29
+        width: 6
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c20deab45eece810800000000000000
+      internalID: 1796072399094743753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cuy_run300x158_0: -8923633275241221448
+      cuy_run300x158_1: 7079090338249073341
+      cuy_run300x158_10: -7321328256816410485
+      cuy_run300x158_11: -1823220999480131187
+      cuy_run300x158_12: -1711863996063983064
+      cuy_run300x158_13: 1136376318132546509
+      cuy_run300x158_14: 1577006250190975919
+      cuy_run300x158_15: 4560466162293885783
+      cuy_run300x158_16: -2450149914005368347
+      cuy_run300x158_17: 8268082434354119998
+      cuy_run300x158_18: -2753815559715303272
+      cuy_run300x158_19: 2117039679728196060
+      cuy_run300x158_2: 5242661611607334992
+      cuy_run300x158_20: -6605064549834011958
+      cuy_run300x158_21: 6637571848705659248
+      cuy_run300x158_22: 8573176572802513541
+      cuy_run300x158_23: -2902635853311336751
+      cuy_run300x158_24: -3039979190109300020
+      cuy_run300x158_25: 8212193746871973081
+      cuy_run300x158_26: 7024129120239512933
+      cuy_run300x158_27: -6933509225823728670
+      cuy_run300x158_28: -3082323363174416140
+      cuy_run300x158_29: -8715330386258142360
+      cuy_run300x158_3: 8656151299676658525
+      cuy_run300x158_30: -7475401987635615758
+      cuy_run300x158_31: -608211502282572812
+      cuy_run300x158_32: -6917256065970036815
+      cuy_run300x158_33: 1061668088740094480
+      cuy_run300x158_34: 2297446852933414694
+      cuy_run300x158_35: 251680578840120723
+      cuy_run300x158_36: -137889878647064359
+      cuy_run300x158_37: -8335241782282280086
+      cuy_run300x158_38: -8143380669761377807
+      cuy_run300x158_39: 7128557482128311164
+      cuy_run300x158_4: 467847286866170330
+      cuy_run300x158_40: -3697625177583375997
+      cuy_run300x158_41: -102518508748251972
+      cuy_run300x158_42: -253994080083257041
+      cuy_run300x158_43: 9048740729782952539
+      cuy_run300x158_44: -7900946143779331414
+      cuy_run300x158_45: 4503589056326731189
+      cuy_run300x158_46: 6293907870073551437
+      cuy_run300x158_47: 4320855715366400073
+      cuy_run300x158_48: 5505016001037407087
+      cuy_run300x158_49: 4921320500522580884
+      cuy_run300x158_5: -5851440689895038284
+      cuy_run300x158_50: 4262581395723603118
+      cuy_run300x158_51: -3756210066030978564
+      cuy_run300x158_52: 7713375427999412674
+      cuy_run300x158_53: -566288066542813307
+      cuy_run300x158_54: 7319182849261870721
+      cuy_run300x158_55: -3786643178256987496
+      cuy_run300x158_56: -7636522230870443760
+      cuy_run300x158_57: -4560135090789548359
+      cuy_run300x158_58: -914959937283802005
+      cuy_run300x158_59: 1001660885418313431
+      cuy_run300x158_6: 3562852332799052286
+      cuy_run300x158_60: -4152686908439458168
+      cuy_run300x158_61: 3806706134039089739
+      cuy_run300x158_62: -4535397410253951584
+      cuy_run300x158_63: 2393499756611108523
+      cuy_run300x158_64: -1908449822145210271
+      cuy_run300x158_65: 5259791754786815457
+      cuy_run300x158_66: 4930887617486128393
+      cuy_run300x158_67: -533554311572532988
+      cuy_run300x158_68: -4249397690934486088
+      cuy_run300x158_69: 2717274650294999177
+      cuy_run300x158_7: 2615682395395181632
+      cuy_run300x158_70: 2214408407378677785
+      cuy_run300x158_71: 1796072399094743753
+      cuy_run300x158_8: 1338178131509204384
+      cuy_run300x158_9: -5598357182550967989
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
