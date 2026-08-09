@@ -95,7 +95,7 @@ public class ControladorCuy : MonoBehaviour
 
         cuerpoFisico.bodyType = RigidbodyType2D.Dynamic;
         cuerpoFisico.gravityScale = 0f;
-        cuerpoFisico.freezeRotation = false;
+        cuerpoFisico.freezeRotation = true;
         cuerpoFisico.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
         if (capacidadMochila <= 0)
@@ -168,6 +168,24 @@ public class ControladorCuy : MonoBehaviour
             temporizadorImpulso = duracionImpulso;
             temporizadorCooldown = cooldownImpulso;
             estadoActual = EstadoCuy.Deslizando;
+
+            AudioClip clipDash = Resources.Load<AudioClip>("Dash");
+            if (clipDash != null)
+            {
+                GameObject objSonido = new GameObject("SonidoDash");
+                objSonido.transform.position = transform.position;
+                AudioSource src = objSonido.AddComponent<AudioSource>();
+                src.clip = clipDash;
+                src.volume = 0.5f;
+                src.Play();
+                Destroy(objSonido, clipDash.length);
+            }
+
+            EmitirPolvoDash();
+            if (CamaraDinamica.Instance != null)
+            {
+                CamaraDinamica.Instance.ActivarTemblor(0.1f, 0.15f);
+            }
         }
 
         bool presionandoShift = false;
@@ -441,6 +459,22 @@ public class ControladorCuy : MonoBehaviour
         componenteAnimador.SetBool("Agotado", estadoActual == EstadoCuy.Agotado);
         componenteAnimador.SetBool("Oculto", estadoActual == EstadoCuy.Oculto);
         componenteAnimador.SetBool("Deslizando", estadoActual == EstadoCuy.Deslizando);
+
+        if (renderizadorSprite != null)
+        {
+            renderizadorSprite.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100f);
+            for (int i = 0; i < mochilaVisual.Count; i++)
+            {
+                if (mochilaVisual[i] != null)
+                {
+                    SpriteRenderer srItem = mochilaVisual[i].GetComponent<SpriteRenderer>();
+                    if (srItem != null)
+                    {
+                        srItem.sortingOrder = renderizadorSprite.sortingOrder + 1 + i;
+                    }
+                }
+            }
+        }
     }
 
     public void SoltarInsumosPorGolpe()
@@ -577,6 +611,8 @@ public class ControladorCuy : MonoBehaviour
         {
             if (tiempoEsperaRecogida <= 0f && mochilaInsumos.Count < capacidadMochila)
             {
+                EmitirChispasRecoleccion(collision.transform.position);
+
                 mochilaInsumos.Add(insumoDelSuelo.tipoDeInsumo);
                 collision.enabled = false;
                 collision.gameObject.transform.SetParent(puntoDeCarga);
@@ -682,6 +718,44 @@ public class ControladorCuy : MonoBehaviour
         if (estadoActual == EstadoCuy.Agotado) return;
 
         estadoActual = estaOculto ? EstadoCuy.Oculto : EstadoCuy.Quieto;
+    }
+
+    private void EmitirPolvoDash()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject polvo = new GameObject("NubePolvo");
+            polvo.transform.position = transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.4f, -0.2f), 0f);
+            polvo.transform.localScale = new Vector3(0.15f, 0.15f, 1f);
+
+            SpriteRenderer sr = polvo.AddComponent<SpriteRenderer>();
+            sr.sprite = spriteGotaGenerica;
+            sr.color = new Color(0.6f, 0.55f, 0.45f, 0.8f);
+            sr.sortingOrder = sortingOrderPlayer() - 1;
+
+            EfectoGotitaAgua scriptPolvo = polvo.AddComponent<EfectoGotitaAgua>();
+            Vector2 dirOpuesta = -entradaMovimiento + new Vector2(Random.Range(-0.6f, 0.6f), Random.Range(-0.6f, 0.6f));
+            scriptPolvo.EstablecerVelocidadBurst(dirOpuesta.normalized * Random.Range(1.5f, 3.5f));
+        }
+    }
+
+    private void EmitirChispasRecoleccion(Vector3 posicion)
+    {
+        for (int i = 0; i < 7; i++)
+        {
+            GameObject chispa = new GameObject("ChispaRecoleccion");
+            chispa.transform.position = posicion + new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
+            chispa.transform.localScale = new Vector3(0.08f, 0.08f, 1f);
+
+            SpriteRenderer sr = chispa.AddComponent<SpriteRenderer>();
+            sr.sprite = spriteGotaGenerica;
+            sr.color = new Color(1f, 0.85f, 0.2f, 1f); 
+            sr.sortingOrder = sortingOrderPlayer() + 10;
+
+            EfectoGotitaAgua scriptChispa = chispa.AddComponent<EfectoGotitaAgua>();
+            Vector2 dirAleatoria = new Vector2(Random.Range(-1f, 1f), Random.Range(0.5f, 2.5f)).normalized;
+            scriptChispa.EstablecerVelocidadBurst(dirAleatoria * Random.Range(2.5f, 4.5f));
+        }
     }
 }
 

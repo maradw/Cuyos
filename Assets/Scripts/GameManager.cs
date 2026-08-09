@@ -41,6 +41,20 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         vidasActuales = vidasMaximas;
+        
+        if (spriteHudTablita == null)
+        {
+            spriteHudTablita = Resources.Load<Sprite>("UI_TablitaVidas");
+        }
+
+        AudioSource musicaFondo = gameObject.AddComponent<AudioSource>();
+        musicaFondo.clip = Resources.Load<AudioClip>("musicanivel");
+        if (musicaFondo.clip != null)
+        {
+            musicaFondo.loop = true;
+            musicaFondo.volume = 0.35f;
+            musicaFondo.Play();
+        }
     }
 
     private void Start()
@@ -202,6 +216,11 @@ public class GameManager : MonoBehaviour
     {
         if (procesandoMuerte) return;
         procesandoMuerte = true;
+
+        if (CamaraDinamica.Instance != null)
+        {
+            CamaraDinamica.Instance.ActivarTemblor(0.8f, 0.4f);
+        }
 
         vidasActuales--;
         ActualizarHUDVidas();

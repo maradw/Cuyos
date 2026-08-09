@@ -91,6 +91,17 @@ public class Condor : MonoBehaviour
                 enPicada = false;
                 subiendoConCuy = true;
                 
+                AudioClip clipPajaro = Resources.Load<AudioClip>("pajaro");
+                if (clipPajaro != null)
+                {
+                    GameObject objSonido = new GameObject("SonidoPajaro");
+                    AudioSource src = objSonido.AddComponent<AudioSource>();
+                    src.clip = clipPajaro;
+                    src.volume = 0.8f;
+                    src.Play();
+                    Destroy(objSonido, clipPajaro.length);
+                }
+                
                 if (cuyObjetivo != null)
                 {
                     ControladorCuy scriptCuy = cuyObjetivo.GetComponent<ControladorCuy>();
