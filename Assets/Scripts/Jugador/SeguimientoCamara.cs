@@ -78,7 +78,7 @@ public class SeguimientoCamara : MonoBehaviour
 
     private void EjecutarSeguimiento()
     {
-        if (objetivoASeguir == null) return;
+        if (objetivoASeguir == null || !objetivoASeguir) return;
 
         try
         {
