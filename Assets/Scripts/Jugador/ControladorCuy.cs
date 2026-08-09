@@ -17,16 +17,16 @@ public class ControladorCuy : MonoBehaviour
         Deslizando 
     }
 
-    [Header("Movimiento Base")]
+    
     public float velocidadMaxima = 6f;
     public float fuerzaAceleracion = 50f;
     public float fuerzaDesaceleracion = 40f;
 
-    [Header("Peso por Carga")]
+    
     public float penalizacionVelocidadPorInsumo = 0.04f;
 
-    [Header("Impulso de Escape (Dash)")]
-    [Tooltip("Permite al cuy dar un breve impulso de velocidad al presionar Espacio")]
+    
+    
     public bool permitirImpulso = true;
     public float multiplicadorImpulso = 1.8f;
     public float duracionImpulso = 0.25f;
@@ -35,7 +35,7 @@ public class ControladorCuy : MonoBehaviour
     private float temporizadorImpulso = 0f;
     private float temporizadorCooldown = 0f;
 
-    [Header("Mecánica de Charco (Empapado)")]
+    
     [HideInInspector] public bool estaEmpapado = false;
     [HideInInspector] public float temporizadorEmpapado = 0f;
     private float temporizadorGotitas = 0f;
@@ -45,20 +45,20 @@ public class ControladorCuy : MonoBehaviour
     private float temporizadorSacudida = 0f;
     private float temporizadorBurstGotas = 0f;
 
-    [Header("Rotacion")]
+    
     public bool rotarHaciaDireccion = true;
     public float velocidadDeGiro = 10f;
 
-    [Header("Wobble de Caminata (Visual)")]
+    
     public bool activarBamboleo = true;
     public float velocidadBamboleo = 12f; 
     public float inclinacionBamboleo = 5f; 
 
-    [Header("Estado")]
+    
     public EstadoCuy estadoActual = EstadoCuy.Quieto;
     public Transform puntoDeCarga;
     
-    [Header("Distribucion en V")]
+    
     public float espacioHorizontal = 0.3f;
     public float espacioVertical = 0.35f;
     public int capacidadMochila = 5;

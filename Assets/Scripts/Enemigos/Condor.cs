@@ -9,12 +9,12 @@ public class Condor : MonoBehaviour
     public Rigidbody2D rb2d;
     private Animator animador;
 
-    [Header("Efecto de Altura y Sombra")]
+    
     public float alturaBase = 5f;
     public float frecuenciaVuelo = 2f;
     public float amplitudVuelo = 2.5f;
 
-    [Header("Cinematica de Caza")]
+    
     public float velocidadDescenso = 10f;
     public float velocidadAscenso = 12f; 
 

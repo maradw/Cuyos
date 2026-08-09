@@ -5,11 +5,11 @@ public class controller_chinchilla : MonoBehaviour
     public float speed = 5f;
     public float dist_min = 0.5f;
     
-    [Header("Patrullaje")]
+    
     public Transform[] points;
     public int rng = 0;
 
-    [Header("Movimiento Zigzag")]
+    
     public float frecuenciaZigzag = 10f;
     public float amplitudAnguloZigzag = 35f;
 

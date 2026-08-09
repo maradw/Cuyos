@@ -7,10 +7,8 @@ public class PlantaCosechable : MonoBehaviour
     public GameObject prefabInsumo; 
     public int pulsacionesRequeridas = 5; 
 
-    [Header("Sprites Personalizados (Opcional)")]
     public Sprite spriteBarra; 
     public Sprite spriteParticula; 
-    [Tooltip("Sprite personalizado para el botón E de interacción")]
     public Sprite spriteBotonInteractuar; 
 
     private int pulsacionesActuales = 0;

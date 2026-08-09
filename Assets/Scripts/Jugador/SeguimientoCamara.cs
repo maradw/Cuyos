@@ -13,7 +13,7 @@ public class SeguimientoCamara : MonoBehaviour
 
     public Transform objetivoASeguir;
     
-    [Tooltip("Elige cuándo debe moverse la cámara. Si el cuy tiembla, prueba cambiar esto en el Inspector en tiempo real.")]
+    
     public MomentoActualizacion momentoDeSeguimiento = MomentoActualizacion.LateUpdate;
 
     [Range(0f, 1f)] public float tiempoDeSuavizado = 0.1f;

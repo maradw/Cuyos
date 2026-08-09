@@ -7,16 +7,16 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("Sistema de Vidas")]
+    
     public int vidasMaximas = 5;
     public int vidasActuales = 5;
 
-    [Header("Configuración de Respawn")]
-    [Tooltip("Punto donde reaparecerá el cuy. Si se deja vacío, tomará la posición inicial del cuy al comenzar el nivel.")]
+    
+    
     public Transform puntoRespawn;
 
-    [Header("Sprites de UI Personalizados")]
-    [Tooltip("Sprite de la tablita con el cuy corazón para mostrar las vidas")]
+    
+    
     public Sprite spriteHudTablita;
 
     private ControladorCuy cuyJugador;
@@ -257,32 +257,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        if (cuyJugador != null)
-        {
-            cuyJugador.SoltarInsumosPorGolpe();
-            cuyJugador.transform.SetParent(null);
-
-            Vector3 destino = (puntoRespawn != null) ? puntoRespawn.position : posicionInicialCuy;
-            cuyJugador.transform.position = destino;
-            cuyJugador.transform.rotation = Quaternion.identity;
-
-            Rigidbody2D rb = cuyJugador.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.bodyType = RigidbodyType2D.Dynamic;
-                rb.linearVelocity = Vector2.zero;
-            }
-
-            Collider2D col = cuyJugador.GetComponent<Collider2D>();
-            if (col != null)
-            {
-                col.enabled = true;
-            }
-
-            cuyJugador.estaEmpapado = false;
-            cuyJugador.temporizadorEmpapado = 0f;
-            cuyJugador.estadoActual = ControladorCuy.EstadoCuy.Quieto;
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return null; 
 
         t = 0f;
         while (t < 1f)
