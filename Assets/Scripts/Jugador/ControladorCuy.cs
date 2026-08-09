@@ -64,6 +64,7 @@ public class ControladorCuy : MonoBehaviour
     public int capacidadMochila = 5;
 
     [HideInInspector] public Vector2 entradaMovimiento;
+    [HideInInspector] public bool controlesInvertidos = false;
     
     public bool estadoOculto
     {
@@ -233,6 +234,8 @@ public class ControladorCuy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (estadoActual == EstadoCuy.Agotado) return;
+        
         float velocidadActualMaxima = velocidadMaxima;
 
         if (estaDasheando)
@@ -298,6 +301,12 @@ public class ControladorCuy : MonoBehaviour
                 entradaX = stickIzquierdo.x;
                 entradaY = stickIzquierdo.y;
             }
+        }
+
+        if (controlesInvertidos)
+        {
+            entradaX *= -1f;
+            entradaY *= -1f;
         }
 
         entradaMovimiento = new Vector2(entradaX, entradaY);
@@ -473,11 +482,90 @@ public class ControladorCuy : MonoBehaviour
         mochilaVisual.Clear();
     }
 
+    public void PerderUltimoInsumo()
+    {
+        if (mochilaVisual.Count == 0) return;
+        
+        int i = mochilaVisual.Count - 1;
+        GameObject insumoObj = mochilaVisual[i];
+        insumoObj.transform.SetParent(null);
+        
+        SpriteRenderer insumoSR = insumoObj.GetComponent<SpriteRenderer>();
+        if (insumoSR != null && capasOriginalesInsumos.ContainsKey(insumoObj))
+        {
+            insumoSR.sortingOrder = capasOriginalesInsumos[insumoObj];
+            capasOriginalesInsumos.Remove(insumoObj);
+        }
+
+        Collider2D col = insumoObj.GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = true;
+        }
+        
+        Vector3 dispersion = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
+        insumoObj.transform.position = transform.position + dispersion;
+        insumoObj.transform.rotation = Quaternion.identity;
+
+        mochilaInsumos.RemoveAt(i);
+        mochilaVisual.RemoveAt(i);
+    }
+
     private IEnumerator RutinaRalentizar()
     {
         estaRalentizado = true;
         yield return new WaitForSeconds(2f);
         estaRalentizado = false;
+    }
+
+    public void RecibirGolpeChinchilla(Vector2 posicionAtacante)
+    {
+        if (estadoActual == EstadoCuy.Agotado) return;
+        SoltarInsumosPorGolpe();
+        StartCoroutine(RutinaKnockback(posicionAtacante));
+    }
+
+    public void ResbalarConPlatano()
+    {
+        if (estadoActual == EstadoCuy.Agotado) return;
+        SoltarInsumosPorGolpe();
+        StartCoroutine(RutinaResbalon());
+    }
+
+    private IEnumerator RutinaResbalon()
+    {
+        controlesInvertidos = true;
+        
+        Color colorOriginal = Color.white;
+        if (renderizadorSprite != null)
+        {
+            colorOriginal = renderizadorSprite.color;
+            renderizadorSprite.color = new Color(0.8f, 1f, 0.3f); 
+        }
+
+        yield return new WaitForSeconds(5.5f);
+        
+        controlesInvertidos = false;
+        
+        if (renderizadorSprite != null)
+        {
+            renderizadorSprite.color = colorOriginal;
+        }
+    }
+
+    private IEnumerator RutinaKnockback(Vector2 posicionAtacante)
+    {
+        estadoActual = EstadoCuy.Agotado; 
+        Vector2 direccionRebote = ((Vector2)transform.position - posicionAtacante).normalized;
+        cuerpoFisico.linearVelocity = direccionRebote * 8f; 
+        
+        yield return new WaitForSeconds(0.25f);
+        
+        cuerpoFisico.linearVelocity = Vector2.zero;
+        if (GameManager.Instance != null && GameManager.Instance.vidasActuales > 0)
+        {
+            estadoActual = EstadoCuy.Quieto;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

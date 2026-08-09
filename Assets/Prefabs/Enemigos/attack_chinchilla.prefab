@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 2174526691410335191}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.79971, y: -0.3649, z: 0}
+  m_LocalPosition: {x: -8.6, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -285,7 +285,7 @@ Transform:
   m_GameObject: {fileID: 8493879107692038304}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.35, y: 0.4, z: 0}
+  m_LocalPosition: {x: -19.2, y: -5.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -304,7 +304,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::controller_chinchilla
   speed: 5
-  power: 3
   dist_min: 0.3
   points:
   - {fileID: 5392424379574456760}
@@ -315,11 +314,12 @@ MonoBehaviour:
   - {fileID: 1840793765234115485}
   - {fileID: 2780775009532425991}
   rng: 0
-  f_position: {x: 0, y: 0}
+  frecuenciaZigzag: 10
+  amplitudAnguloZigzag: 35
   padre: {fileID: 0}
 --- !u!212 &517550145195786690
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -366,7 +366,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5367105992960679471, guid: e98303989ca71ee40874f0d22a84d050, type: 3}
+  m_Sprite: {fileID: -3630925637381695878, guid: 094fb6bfef318364babd95a8e1bccc2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -376,6 +376,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!50 &5407956001732439087
 Rigidbody2D:
   serializedVersion: 5
@@ -437,6 +438,6 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.12990475, y: 0.15155554}
-  m_Size: {x: 1.112318, y: 1.6968889}
+  m_Offset: {x: -0.024857521, y: -0.20017505}
+  m_Size: {x: 1.9846096, y: 2.40035}
   m_Direction: 0
