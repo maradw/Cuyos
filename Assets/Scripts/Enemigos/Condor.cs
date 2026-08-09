@@ -20,6 +20,7 @@ public class Condor : MonoBehaviour
 
     private Vector3 escalaBaseSombra;
     private Vector3 posicionInicialAve;
+    private SpriteRenderer sombraSR;
     
     private bool enPicada = false;
     private bool subiendoConCuy = false;
@@ -54,7 +55,7 @@ public class Condor : MonoBehaviour
         {
             escalaBaseSombra = sombra.localScale;
             
-            SpriteRenderer sombraSR = sombra.GetComponent<SpriteRenderer>();
+            sombraSR = sombra.GetComponent<SpriteRenderer>();
             if (sombraSR != null)
             {
                 sombraSR.color = new Color(0f, 0f, 0f, 0.4f); 
@@ -148,7 +149,6 @@ public class Condor : MonoBehaviour
             float factorEscala = 1.5f / (dist * 0.15f + 0.4f);
             sombra.localScale = escalaBaseSombra * Mathf.Clamp(factorEscala, 0.4f, 2.5f);
 
-            SpriteRenderer sombraSR = sombra.GetComponent<SpriteRenderer>();
             if (sombraSR != null)
             {
                 sombraSR.color = new Color(0f, 0f, 0f, Mathf.Clamp(factorEscala * 0.2f, 0f, 0.4f));
