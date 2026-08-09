@@ -1,18 +1,23 @@
+using Game.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonAssignment : MonoBehaviour
+public class MenuManagement : MonoBehaviour
 {
     [SerializeField] Button startButton;
     [SerializeField] Button exitButton;
     [SerializeField] Button creditsButton;
     [SerializeField] Button AudioSettings;
+    [SerializeField] MusicData BgMusic;
     void Start()
     {
-       startButton.onClick.AddListener(() => TransitionManager.Instance.LoadSceneByName("CinematicaInicio"));
+        MusicManager.Instance.PlayBG(BgMusic);
+        startButton.onClick.AddListener(() => MusicManager.Instance.StopFade(1f));
+        startButton.onClick.AddListener(() => TransitionManager.Instance.LoadSceneCorrutine("CinematicaInicio"));
        exitButton.onClick.AddListener(TransitionManager.Instance.ExitGame);
         //creditsButton.onClick.AddListener(() => TransitionManager.Instance.LoadSceneByName("Credits"));
         AudioSettings.onClick.AddListener(TransitionManager.Instance.ShowAudioSettings);
+        
     }
 
     void Update()

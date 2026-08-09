@@ -67,6 +67,16 @@ public class TransitionManager : MonoBehaviour
     {
         audioSettingsPanel.SetActive(true);
     }
+    public void LoadSceneCorrutine(string scenename)
+    {
+        StartCoroutine(nextScene(scenename));
+    }
+
+    private IEnumerator nextScene(string scenename)
+    {
+       yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(scenename);
+    }
 
     private IEnumerator FadeIn()
     {

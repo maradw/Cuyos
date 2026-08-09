@@ -1,3 +1,4 @@
+using Game.Audio;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioData _volumeData;
     [SerializeField] private AudioSource _buttonSound;
     public static MusicManager Instance;
+    [SerializeField] private AudioSource audioSource;
+    public MusicData CurrentMusic { get; private set; }
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -43,8 +46,33 @@ public class MusicManager : MonoBehaviour
         _volumeData._SFX = f;
         _audioGameMixer.SetFloat("SFX", Mathf.Log10(f) * 20f);
     }
-    public void PlayButtonSound()
+    public void PlayBG(MusicData musicData)
     {
-        _buttonSound.Play();
+        if (CurrentMusic == musicData)
+            return;
+        CurrentMusic = musicData;
+        audioSource.clip = musicData.Clip;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
+    public void StopFade(float duration)
+    {
+        StartCoroutine(FadeOutCoroutine(duration));
+        audioSource.volume = 1f;
+    }
+
+    private IEnumerator FadeOutCoroutine(float duration)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / duration;
+            yield return null;
+        }
+
+        audioSource.volume = 0f;
+        audioSource.Stop();
     }
 }
