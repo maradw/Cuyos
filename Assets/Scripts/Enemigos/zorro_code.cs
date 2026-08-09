@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 public class zorro_code : MonoBehaviour
 {
-    [Header("Componentes")]
+    
     public Rigidbody2D rb2d;
     public Image img;
     public Canvas canvas;
     private Animator animador;
 
-    [Header("Patrullaje")]
+    
     public Transform A;
     public Transform B;
     public float distanciaMinimaPunto = 0.2f;
@@ -19,12 +19,12 @@ public class zorro_code : MonoBehaviour
     private float temporizadorEspera = 0f;
     private bool estaEsperando = false;
 
-    [Header("Configuracion Cuy")]
+    
     public ControladorCuy player_code;
     public GameObject player;
     public Rigidbody2D player_rb;
 
-    [Header("Deteccion y Velocidad")]
+    
     public float rangoDeteccion = 12.0f; 
     public float rangoDeteccionProximidad = 6.0f; 
     public float speed = 3f;
@@ -34,7 +34,7 @@ public class zorro_code : MonoBehaviour
     private float velocidadOriginal;
     public bool caza = false;
     
-    [Header("Sospecha")]
+    
     public float barra_tot = 100f;
     public float barra_act = 0f;
     public float velocidadLlenadoBarra = 15f; 

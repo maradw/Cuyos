@@ -17,16 +17,16 @@ public class ControladorCuy : MonoBehaviour
         Deslizando 
     }
 
-    [Header("Movimiento Base")]
+    
     public float velocidadMaxima = 6f;
     public float fuerzaAceleracion = 50f;
     public float fuerzaDesaceleracion = 40f;
 
-    [Header("Peso por Carga")]
+    
     public float penalizacionVelocidadPorInsumo = 0.04f;
 
-    [Header("Impulso de Escape (Dash)")]
-    [Tooltip("Permite al cuy dar un breve impulso de velocidad al presionar Espacio")]
+    
+    
     public bool permitirImpulso = true;
     public float multiplicadorImpulso = 1.8f;
     public float duracionImpulso = 0.25f;
@@ -35,7 +35,7 @@ public class ControladorCuy : MonoBehaviour
     private float temporizadorImpulso = 0f;
     private float temporizadorCooldown = 0f;
 
-    [Header("Mecánica de Charco (Empapado)")]
+    
     [HideInInspector] public bool estaEmpapado = false;
     [HideInInspector] public float temporizadorEmpapado = 0f;
     private float temporizadorGotitas = 0f;
@@ -45,25 +45,26 @@ public class ControladorCuy : MonoBehaviour
     private float temporizadorSacudida = 0f;
     private float temporizadorBurstGotas = 0f;
 
-    [Header("Rotacion")]
+    
     public bool rotarHaciaDireccion = true;
     public float velocidadDeGiro = 10f;
 
-    [Header("Wobble de Caminata (Visual)")]
+    
     public bool activarBamboleo = true;
     public float velocidadBamboleo = 12f; 
     public float inclinacionBamboleo = 5f; 
 
-    [Header("Estado")]
+    
     public EstadoCuy estadoActual = EstadoCuy.Quieto;
     public Transform puntoDeCarga;
     
-    [Header("Distribucion en V")]
+    
     public float espacioHorizontal = 0.3f;
     public float espacioVertical = 0.35f;
     public int capacidadMochila = 5;
 
     [HideInInspector] public Vector2 entradaMovimiento;
+    [HideInInspector] public bool controlesInvertidos = false;
     
     public bool estadoOculto
     {
@@ -233,6 +234,8 @@ public class ControladorCuy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (estadoActual == EstadoCuy.Agotado) return;
+        
         float velocidadActualMaxima = velocidadMaxima;
 
         if (estaDasheando)
@@ -298,6 +301,12 @@ public class ControladorCuy : MonoBehaviour
                 entradaX = stickIzquierdo.x;
                 entradaY = stickIzquierdo.y;
             }
+        }
+
+        if (controlesInvertidos)
+        {
+            entradaX *= -1f;
+            entradaY *= -1f;
         }
 
         entradaMovimiento = new Vector2(entradaX, entradaY);
@@ -473,11 +482,90 @@ public class ControladorCuy : MonoBehaviour
         mochilaVisual.Clear();
     }
 
+    public void PerderUltimoInsumo()
+    {
+        if (mochilaVisual.Count == 0) return;
+        
+        int i = mochilaVisual.Count - 1;
+        GameObject insumoObj = mochilaVisual[i];
+        insumoObj.transform.SetParent(null);
+        
+        SpriteRenderer insumoSR = insumoObj.GetComponent<SpriteRenderer>();
+        if (insumoSR != null && capasOriginalesInsumos.ContainsKey(insumoObj))
+        {
+            insumoSR.sortingOrder = capasOriginalesInsumos[insumoObj];
+            capasOriginalesInsumos.Remove(insumoObj);
+        }
+
+        Collider2D col = insumoObj.GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = true;
+        }
+        
+        Vector3 dispersion = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
+        insumoObj.transform.position = transform.position + dispersion;
+        insumoObj.transform.rotation = Quaternion.identity;
+
+        mochilaInsumos.RemoveAt(i);
+        mochilaVisual.RemoveAt(i);
+    }
+
     private IEnumerator RutinaRalentizar()
     {
         estaRalentizado = true;
         yield return new WaitForSeconds(2f);
         estaRalentizado = false;
+    }
+
+    public void RecibirGolpeChinchilla(Vector2 posicionAtacante)
+    {
+        if (estadoActual == EstadoCuy.Agotado) return;
+        SoltarInsumosPorGolpe();
+        StartCoroutine(RutinaKnockback(posicionAtacante));
+    }
+
+    public void ResbalarConPlatano()
+    {
+        if (estadoActual == EstadoCuy.Agotado) return;
+        SoltarInsumosPorGolpe();
+        StartCoroutine(RutinaResbalon());
+    }
+
+    private IEnumerator RutinaResbalon()
+    {
+        controlesInvertidos = true;
+        
+        Color colorOriginal = Color.white;
+        if (renderizadorSprite != null)
+        {
+            colorOriginal = renderizadorSprite.color;
+            renderizadorSprite.color = new Color(0.8f, 1f, 0.3f); 
+        }
+
+        yield return new WaitForSeconds(5.5f);
+        
+        controlesInvertidos = false;
+        
+        if (renderizadorSprite != null)
+        {
+            renderizadorSprite.color = colorOriginal;
+        }
+    }
+
+    private IEnumerator RutinaKnockback(Vector2 posicionAtacante)
+    {
+        estadoActual = EstadoCuy.Agotado; 
+        Vector2 direccionRebote = ((Vector2)transform.position - posicionAtacante).normalized;
+        cuerpoFisico.linearVelocity = direccionRebote * 8f; 
+        
+        yield return new WaitForSeconds(0.25f);
+        
+        cuerpoFisico.linearVelocity = Vector2.zero;
+        if (GameManager.Instance != null && GameManager.Instance.vidasActuales > 0)
+        {
+            estadoActual = EstadoCuy.Quieto;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -500,7 +588,7 @@ public class ControladorCuy : MonoBehaviour
                     {
                         capasOriginalesInsumos.Add(collision.gameObject, insumoSR.sortingOrder);
                     }
-                    insumoSR.sortingOrder = renderizadorSprite.sortingOrder + 1;
+                    insumoSR.sortingOrder = renderizadorSprite.sortingOrder + 1 + mochilaVisual.Count;
                 }
 
                 Vector3 posicionV = CalcularPosicionV(mochilaVisual.Count);
@@ -539,15 +627,8 @@ public class ControladorCuy : MonoBehaviour
 
     private Vector3 CalcularPosicionV(int indice)
     {
-        if (indice == 0) return Vector3.zero;
-
-        float lado = (indice % 2 == 1) ? -1f : 1f;
-        int multiplicador = (indice + 1) / 2;
-        
-        float x = lado * espacioHorizontal * multiplicador;
-        float y = espacioVertical * multiplicador;
-        
-        return new Vector3(x, y, 0);
+        float y = 0.18f * indice;
+        return new Vector3(0, y, 0);
     }
 
     private void ReordenarMochilaVisual()
@@ -557,6 +638,12 @@ public class ControladorCuy : MonoBehaviour
             if (mochilaVisual[i] != null)
             {
                 mochilaVisual[i].transform.localPosition = CalcularPosicionV(i);
+                
+                SpriteRenderer sr = mochilaVisual[i].GetComponent<SpriteRenderer>();
+                if (sr != null && renderizadorSprite != null)
+                {
+                    sr.sortingOrder = renderizadorSprite.sortingOrder + 1 + i;
+                }
             }
         }
     }
@@ -577,8 +664,6 @@ public class ControladorCuy : MonoBehaviour
 
     public void Morir()
     {
-        if (estadoActual == EstadoCuy.Agotado) return;
-
         estadoActual = EstadoCuy.Agotado;
         cuerpoFisico.linearVelocity = Vector2.zero;
 

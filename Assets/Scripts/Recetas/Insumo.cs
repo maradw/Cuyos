@@ -7,6 +7,21 @@ public enum TipoInsumo
     QuesoFresco,
     GalletaDeSoda,
     AceitunaBotija,
+    Leche,
+    Huacatay,
+    Ajo,
+    Choclo,
+    Azucar,
+    Pasas,
+    Anis,
+    Rocoto,
+    Mani,
+    CarneMolida,
+    Huevo,
+    Camote,
+    Habas,
+    Trigo,
+    Zapallo,
     FragmentoDeFoto
 }
 
@@ -14,7 +29,7 @@ public enum TipoInsumo
 public class Insumo : MonoBehaviour
 {
     public TipoInsumo tipoDeInsumo;
-    public string nombreInsumo = "Papa Amarilla";
+    public string nombreInsumo = "";
 
     private void Awake()
     {

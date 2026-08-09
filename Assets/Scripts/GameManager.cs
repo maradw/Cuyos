@@ -7,16 +7,16 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [Header("Sistema de Vidas")]
+    
     public int vidasMaximas = 5;
     public int vidasActuales = 5;
 
-    [Header("Configuración de Respawn")]
-    [Tooltip("Punto donde reaparecerá el cuy. Si se deja vacío, tomará la posición inicial del cuy al comenzar el nivel.")]
+    
+    
     public Transform puntoRespawn;
 
-    [Header("Sprites de UI Personalizados")]
-    [Tooltip("Sprite de la tablita con el cuy corazón para mostrar las vidas")]
+    
+    
     public Sprite spriteHudTablita;
 
     private ControladorCuy cuyJugador;
@@ -107,11 +107,15 @@ public class GameManager : MonoBehaviour
         rtFade.anchorMax = Vector2.one;
         rtFade.sizeDelta = Vector2.zero;
 
+        Font fuenteDefault = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        if (fuenteDefault == null) fuenteDefault = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        if (fuenteDefault == null) fuenteDefault = Font.CreateDynamicFontFromOSFont("Arial", 14);
+
         GameObject goTextFade = new GameObject("TextFadeVidas");
         goTextFade.transform.SetParent(goFade.transform, false);
 
         textoVidasFade = goTextFade.AddComponent<Text>();
-        textoVidasFade.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        textoVidasFade.font = fuenteDefault;
         textoVidasFade.fontSize = 65;
         textoVidasFade.alignment = TextAnchor.MiddleCenter;
         textoVidasFade.color = new Color(1f, 1f, 1f, 0f);
@@ -144,7 +148,7 @@ public class GameManager : MonoBehaviour
             goHUDText.transform.SetParent(goHUD.transform, false);
 
             textoHUDVidas = goHUDText.AddComponent<Text>();
-            textoHUDVidas.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            textoHUDVidas.font = fuenteDefault;
             textoHUDVidas.fontSize = 42;
             textoHUDVidas.fontStyle = FontStyle.Bold;
             textoHUDVidas.alignment = TextAnchor.MiddleCenter;
@@ -164,7 +168,7 @@ public class GameManager : MonoBehaviour
         else
         {
             textoHUDVidas = goHUD.AddComponent<Text>();
-            textoHUDVidas.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            textoHUDVidas.font = fuenteDefault;
             textoHUDVidas.fontSize = 36;
             textoHUDVidas.alignment = TextAnchor.UpperLeft;
             textoHUDVidas.color = Color.white;
@@ -229,7 +233,7 @@ public class GameManager : MonoBehaviour
         float t = 0f;
         if (textoVidasFade != null)
         {
-            textoVidasFade.text = $"Intentos Restantes: {vidasActuales}";
+            textoVidasFade.text = "¡Cui, cuiii... cuidado!";
         }
 
         while (t < 1f)
@@ -257,32 +261,8 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        if (cuyJugador != null)
-        {
-            cuyJugador.SoltarInsumosPorGolpe();
-            cuyJugador.transform.SetParent(null);
-
-            Vector3 destino = (puntoRespawn != null) ? puntoRespawn.position : posicionInicialCuy;
-            cuyJugador.transform.position = destino;
-            cuyJugador.transform.rotation = Quaternion.identity;
-
-            Rigidbody2D rb = cuyJugador.GetComponent<Rigidbody2D>();
-            if (rb != null)
-            {
-                rb.bodyType = RigidbodyType2D.Dynamic;
-                rb.linearVelocity = Vector2.zero;
-            }
-
-            Collider2D col = cuyJugador.GetComponent<Collider2D>();
-            if (col != null)
-            {
-                col.enabled = true;
-            }
-
-            cuyJugador.estaEmpapado = false;
-            cuyJugador.temporizadorEmpapado = 0f;
-            cuyJugador.estadoActual = ControladorCuy.EstadoCuy.Quieto;
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        yield return null; 
 
         t = 0f;
         while (t < 1f)

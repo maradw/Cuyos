@@ -5,13 +5,13 @@ public class controller_chinchilla : MonoBehaviour
     public float speed = 5f;
     public float dist_min = 0.5f;
     
-    [Header("Patrullaje")]
+    
     public Transform[] points;
     public int rng = 0;
 
-    [Header("Movimiento Zigzag")]
-    public float frecuenciaZigzag = 10f;
-    public float amplitudAnguloZigzag = 35f;
+    
+    public float frecuenciaZigzag = 4f;
+    public float amplitudAnguloZigzag = 20f;
 
     private SpriteRenderer sr;
     private Rigidbody2D rb2d;
@@ -59,21 +59,20 @@ public class controller_chinchilla : MonoBehaviour
             {
                 rng = 0;
             }
-            rotar();
         }
+        
+        rotar();
     }
     
     public void rotar()
     {
         if (points == null || points.Length <= rng) return;
 
-        if (posicionBaseInterna.x < points[rng].transform.position.x)
+        Vector2 dir = (points[rng].position - transform.position).normalized;
+        if (dir != Vector2.zero)
         {
-            sr.flipX = true;
-        }
-        else
-        {
-            sr.flipX = false;
+            float angulo = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90f;
+            transform.rotation = Quaternion.Euler(0, 0, angulo);
         }
     }
 
@@ -84,8 +83,13 @@ public class controller_chinchilla : MonoBehaviour
             ControladorCuy cuy = collision.GetComponent<ControladorCuy>();
             if (cuy != null)
             {
-                cuy.SoltarInsumosPorGolpe();
-                tiempoEsperaGolpe = 2f; 
+                cuy.RecibirGolpeChinchilla(transform.position);
+                
+                rng += 1;
+                if (points != null && rng >= points.Length) rng = 0;
+                rotar();
+
+                tiempoEsperaGolpe = 1.5f; 
             }
         }
     }

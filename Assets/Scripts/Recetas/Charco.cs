@@ -14,7 +14,7 @@ public class Charco : MonoBehaviour
         if (cuy != null)
         {
             cuy.estaEmpapado = true;
-            cuy.temporizadorEmpapado = 2.0f; // Se mantiene empapado mientras esté dentro del charco
+            cuy.temporizadorEmpapado = 2.0f;
         }
     }
 
@@ -24,7 +24,7 @@ public class Charco : MonoBehaviour
         if (cuy != null)
         {
             cuy.estaEmpapado = true;
-            cuy.temporizadorEmpapado = 3.0f; // Sigue empapado por 3 segundos tras salir del charco
+            cuy.temporizadorEmpapado = 3.0f; 
         }
     }
 }
