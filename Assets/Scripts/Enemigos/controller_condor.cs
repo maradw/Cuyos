@@ -20,10 +20,14 @@ public class controller_condor : MonoBehaviour
             }
         }
 
-        if (ave != null)
+        if (ave != null && (bool)ave)
         {
-            renderizadoresAve = ave.GetComponentsInChildren<SpriteRenderer>();
-            SetRenderersActive(false);
+            try 
+            {
+                renderizadoresAve = ave.GetComponentsInChildren<SpriteRenderer>();
+                SetRenderersActive(false);
+            }
+            catch (System.Exception) { }
         }
     }
 
@@ -53,20 +57,24 @@ public class controller_condor : MonoBehaviour
                 cuyCol.enabled = false;
             }
 
-            if (renderizadoresAve == null && ave != null)
+            if (renderizadoresAve == null && ave != null && (bool)ave)
             {
-                renderizadoresAve = ave.GetComponentsInChildren<SpriteRenderer>();
+                try { renderizadoresAve = ave.GetComponentsInChildren<SpriteRenderer>(); } catch { }
             }
 
             SetRenderersActive(true);
 
-            if (ave != null)
+            if (ave != null && (bool)ave)
             {
-                Condor scriptCondor = ave.GetComponent<Condor>();
-                if (scriptCondor != null)
+                try 
                 {
-                    scriptCondor.IniciarPicada(cuy.gameObject);
-                }
+                    Condor scriptCondor = ave.GetComponent<Condor>();
+                    if (scriptCondor != null)
+                    {
+                        scriptCondor.IniciarPicada(cuy.gameObject);
+                    }
+                } 
+                catch (System.Exception) { }
             }
         }
     }

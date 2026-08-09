@@ -52,11 +52,11 @@ public class GeneradorHuellas : MonoBehaviour
         float angulo = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
         huella.transform.rotation = Quaternion.Euler(0, 0, angulo);
         
-        huella.transform.localScale = new Vector3(0.06f, 0.08f, 1f);
+        huella.transform.localScale = new Vector3(0.4f, 0.5f, 1f);
 
         SpriteRenderer sr = huella.AddComponent<SpriteRenderer>();
         sr.sprite = spriteHuella;
-        sr.color = new Color(0.1f, 0.25f, 0.15f, 0.35f); 
+        sr.color = new Color(0.1f, 0.05f, 0f, 0.6f); 
         sr.sortingOrder = 1;
 
         huella.AddComponent<DesvanecerHuella>();
