@@ -500,7 +500,7 @@ public class ControladorCuy : MonoBehaviour
                     {
                         capasOriginalesInsumos.Add(collision.gameObject, insumoSR.sortingOrder);
                     }
-                    insumoSR.sortingOrder = renderizadorSprite.sortingOrder + 1;
+                    insumoSR.sortingOrder = renderizadorSprite.sortingOrder + 1 + mochilaVisual.Count;
                 }
 
                 Vector3 posicionV = CalcularPosicionV(mochilaVisual.Count);
@@ -539,15 +539,8 @@ public class ControladorCuy : MonoBehaviour
 
     private Vector3 CalcularPosicionV(int indice)
     {
-        if (indice == 0) return Vector3.zero;
-
-        float lado = (indice % 2 == 1) ? -1f : 1f;
-        int multiplicador = (indice + 1) / 2;
-        
-        float x = lado * espacioHorizontal * multiplicador;
-        float y = espacioVertical * multiplicador;
-        
-        return new Vector3(x, y, 0);
+        float y = 0.18f * indice;
+        return new Vector3(0, y, 0);
     }
 
     private void ReordenarMochilaVisual()
@@ -557,6 +550,12 @@ public class ControladorCuy : MonoBehaviour
             if (mochilaVisual[i] != null)
             {
                 mochilaVisual[i].transform.localPosition = CalcularPosicionV(i);
+                
+                SpriteRenderer sr = mochilaVisual[i].GetComponent<SpriteRenderer>();
+                if (sr != null && renderizadorSprite != null)
+                {
+                    sr.sortingOrder = renderizadorSprite.sortingOrder + 1 + i;
+                }
             }
         }
     }
@@ -577,8 +576,6 @@ public class ControladorCuy : MonoBehaviour
 
     public void Morir()
     {
-        if (estadoActual == EstadoCuy.Agotado) return;
-
         estadoActual = EstadoCuy.Agotado;
         cuerpoFisico.linearVelocity = Vector2.zero;
 

@@ -107,11 +107,15 @@ public class GameManager : MonoBehaviour
         rtFade.anchorMax = Vector2.one;
         rtFade.sizeDelta = Vector2.zero;
 
+        Font fuenteDefault = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        if (fuenteDefault == null) fuenteDefault = Resources.GetBuiltinResource<Font>("Arial.ttf");
+        if (fuenteDefault == null) fuenteDefault = Font.CreateDynamicFontFromOSFont("Arial", 14);
+
         GameObject goTextFade = new GameObject("TextFadeVidas");
         goTextFade.transform.SetParent(goFade.transform, false);
 
         textoVidasFade = goTextFade.AddComponent<Text>();
-        textoVidasFade.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        textoVidasFade.font = fuenteDefault;
         textoVidasFade.fontSize = 65;
         textoVidasFade.alignment = TextAnchor.MiddleCenter;
         textoVidasFade.color = new Color(1f, 1f, 1f, 0f);
@@ -144,7 +148,7 @@ public class GameManager : MonoBehaviour
             goHUDText.transform.SetParent(goHUD.transform, false);
 
             textoHUDVidas = goHUDText.AddComponent<Text>();
-            textoHUDVidas.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            textoHUDVidas.font = fuenteDefault;
             textoHUDVidas.fontSize = 42;
             textoHUDVidas.fontStyle = FontStyle.Bold;
             textoHUDVidas.alignment = TextAnchor.MiddleCenter;
@@ -164,7 +168,7 @@ public class GameManager : MonoBehaviour
         else
         {
             textoHUDVidas = goHUD.AddComponent<Text>();
-            textoHUDVidas.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            textoHUDVidas.font = fuenteDefault;
             textoHUDVidas.fontSize = 36;
             textoHUDVidas.alignment = TextAnchor.UpperLeft;
             textoHUDVidas.color = Color.white;
@@ -229,7 +233,7 @@ public class GameManager : MonoBehaviour
         float t = 0f;
         if (textoVidasFade != null)
         {
-            textoVidasFade.text = $"Intentos Restantes: {vidasActuales}";
+            textoVidasFade.text = "¡Cui, cuiii... cuidado!";
         }
 
         while (t < 1f)
