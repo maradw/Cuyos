@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class controller_condor : MonoBehaviour
 {
-    public GameObject ave; 
+    public Transform ave;
     private bool capturado = false;
     private SpriteRenderer[] renderizadoresAve;
 
@@ -14,15 +14,15 @@ public class controller_condor : MonoBehaviour
             {
                 if (hermano.GetComponent<Condor>() != null || hermano.name.ToLower().Contains("ave") || hermano.name.ToLower().Contains("condor"))
                 {
-                    ave = hermano.gameObject;
+                    ave = hermano;
                     break;
                 }
             }
         }
 
-        if (ave != null && (bool)ave)
+        if (ave != null && ave)
         {
-            try 
+            try
             {
                 renderizadoresAve = ave.GetComponentsInChildren<SpriteRenderer>();
                 SetRenderersActive(false);
@@ -33,8 +33,6 @@ public class controller_condor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"[COLISIÓN] Cuy pisó sombra: {collision.gameObject.name}");
-
         if (capturado) return;
 
         ControladorCuy cuy = collision.GetComponent<ControladorCuy>();
@@ -57,23 +55,23 @@ public class controller_condor : MonoBehaviour
                 cuyCol.enabled = false;
             }
 
-            if (renderizadoresAve == null && ave != null && (bool)ave)
+            if (renderizadoresAve == null && ave != null && ave)
             {
                 try { renderizadoresAve = ave.GetComponentsInChildren<SpriteRenderer>(); } catch { }
             }
 
             SetRenderersActive(true);
 
-            if (ave != null && (bool)ave)
+            if (ave != null && ave)
             {
-                try 
+                try
                 {
                     Condor scriptCondor = ave.GetComponent<Condor>();
                     if (scriptCondor != null)
                     {
                         scriptCondor.IniciarPicada(cuy.gameObject);
                     }
-                } 
+                }
                 catch (System.Exception) { }
             }
         }

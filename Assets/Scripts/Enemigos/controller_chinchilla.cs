@@ -28,7 +28,6 @@ public class controller_chinchilla : MonoBehaviour
         rng = 0;
         
         posicionBaseInterna = transform.position;
-        rotar();
     }
 
     private void FixedUpdate()
@@ -51,6 +50,9 @@ public class controller_chinchilla : MonoBehaviour
         Vector2 dirZigzag = new Vector2(Mathf.Cos(anguloFinal), Mathf.Sin(anguloFinal));
 
         rb2d.MovePosition(posActual + dirZigzag * speed * Time.fixedDeltaTime);
+        
+        float anguloReal = Mathf.Atan2(dirZigzag.y, dirZigzag.x) * Mathf.Rad2Deg + 90f;
+        rb2d.MoveRotation(anguloReal);
 
         if (Vector2.Distance(posActual, posObjetivo) < dist_min)
         {
@@ -60,20 +62,11 @@ public class controller_chinchilla : MonoBehaviour
                 rng = 0;
             }
         }
-        
-        rotar();
     }
     
     public void rotar()
     {
-        if (points == null || points.Length <= rng) return;
-
-        Vector2 dir = (points[rng].position - transform.position).normalized;
-        if (dir != Vector2.zero)
-        {
-            float angulo = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 90f;
-            transform.rotation = Quaternion.Euler(0, 0, angulo);
-        }
+        // Esta función ya no se usa porque la rotación se calcula dinámicamente en FixedUpdate
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -87,7 +80,6 @@ public class controller_chinchilla : MonoBehaviour
                 
                 rng += 1;
                 if (points != null && rng >= points.Length) rng = 0;
-                rotar();
 
                 tiempoEsperaGolpe = 1.5f; 
             }

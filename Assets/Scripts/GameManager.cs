@@ -35,14 +35,26 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
         {
             Destroy(gameObject);
             return;
         }
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        Font fuenteDaydream = Resources.Load<Font>("Fonts/Daydream DEMO");
+        if (fuenteDaydream != null)
+        {
+            Text[] todosLosTextos = Resources.FindObjectsOfTypeAll<Text>();
+            foreach (Text t in todosLosTextos)
+            {
+                t.font = fuenteDaydream;
+            }
+        }
 
         vidasActuales = vidasMaximas;
         
@@ -63,8 +75,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        MusicManager.Instance.PlayBG(BgMusic);
-        //MusicManager.Instance.StopFade(0.5f); //+++++++++
+        if (MusicManager.Instance != null && BgMusic != null)
+            MusicManager.Instance.PlayBG(BgMusic);
         BuscarJugadorYGuardarPosicion();
         CrearElementosUIDinamicos();
     }
@@ -127,7 +139,8 @@ public class GameManager : MonoBehaviour
         rtFade.anchorMax = Vector2.one;
         rtFade.sizeDelta = Vector2.zero;
 
-        Font fuenteDefault = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+        Font fuenteDefault = Resources.Load<Font>("Fonts/Daydream DEMO");
+        if (fuenteDefault == null) fuenteDefault = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
         if (fuenteDefault == null) fuenteDefault = Resources.GetBuiltinResource<Font>("Arial.ttf");
         if (fuenteDefault == null) fuenteDefault = Font.CreateDynamicFontFromOSFont("Arial", 14);
 
@@ -315,40 +328,23 @@ public class GameManager : MonoBehaviour
         }
 
         float t = 0f;
-        if (textoVidasFade != null)
-        {
-            textoVidasFade.text = "GAME OVER\n\nPresiona cualquier tecla para reiniciar";
-            textoVidasFade.color = Color.clear;
-        }
-
         while (t < 1f)
         {
             t += Time.deltaTime * 1.5f;
-            if (imagenNegraFade != null) imagenNegraFade.color = new Color(0.1f, 0f, 0f, Mathf.Clamp01(t) * 0.95f);
-            yield return null;
-        }
-
-        t = 0f;
-        while (t < 1f)
-        {
-            t += Time.deltaTime * 2f;
-            if (textoVidasFade != null) textoVidasFade.color = new Color(1f, 0.1f, 0.1f, Mathf.Clamp01(t));
-            yield return null;
-        }
-
-        bool reiniciado = false;
-        while (!reiniciado)
-        {
-            //Input.anyKeyDown
-
-            if (Keyboard.current.anyKey.wasPressedThisFrame)
-            {
-                reiniciado = true;
-            }
+            if (imagenNegraFade != null) imagenNegraFade.color = new Color(0f, 0f, 0f, Mathf.Clamp01(t));
             yield return null;
         }
 
         vidasActuales = vidasMaximas;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        if (PantallaEventos.Instance != null)
+        {
+            if (imagenNegraFade != null) imagenNegraFade.color = Color.clear;
+            yield return StartCoroutine(PantallaEventos.Instance.MostrarGameOver());
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
