@@ -264,7 +264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -621, y: 231}
+  m_AnchoredPosition: {x: -621, y: 214}
   m_SizeDelta: {x: 400.012, y: 87.732}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &44505494
@@ -444,7 +444,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 980.30994, y: -181.91998}
+  m_AnchoredPosition: {x: 980.30994, y: -150.91994}
   m_SizeDelta: {x: 670.35, y: 116.065}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &59452476
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 42.8
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1309,7 +1309,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -695.13, y: -212}
+  m_AnchoredPosition: {x: -695.13, y: -226}
   m_SizeDelta: {x: 251.495, y: 53.786}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &234959440
@@ -1756,7 +1756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -630, y: 77.813}
+  m_AnchoredPosition: {x: -630, y: 30}
   m_SizeDelta: {x: 343.544, y: 84.107}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &292288323
@@ -1779,7 +1779,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Padre latino
+  m_text: 'Jean Paul Cornejo
 
     (Programador)
 
@@ -1849,7 +1849,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -96.98276, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2758,7 +2758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 545, y: 76}
+  m_AnchoredPosition: {x: 545, y: 28}
   m_SizeDelta: {x: 664.705, y: 87.733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &377431138
@@ -2975,7 +2975,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.855, y: 231}
+  m_AnchoredPosition: {x: 19.855, y: 214}
   m_SizeDelta: {x: 702.111, y: 87.73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465144869
@@ -4176,7 +4176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030518, y: 367.6}
+  m_AnchoredPosition: {x: 0.000030518, y: 412}
   m_SizeDelta: {x: 570.75, y: 111.647}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &793362258
@@ -5270,7 +5270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 647, y: 231}
+  m_AnchoredPosition: {x: 647, y: 217}
   m_SizeDelta: {x: 386.847, y: 87.733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091144084
@@ -5411,7 +5411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -630, y: -75}
+  m_AnchoredPosition: {x: -808, y: -124}
   m_SizeDelta: {x: 400.732, y: 87.733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1106278938
@@ -5500,7 +5500,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 189.60391, y: 0, z: -225.24152, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6167,7 +6167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -77, y: 76}
+  m_AnchoredPosition: {x: -77, y: 27}
   m_SizeDelta: {x: 553.6, y: 87.733}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1278754479
@@ -6190,7 +6190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sharon
+  m_text: 'Sharon Aguero
 
     (Ilustradora)
 
@@ -6481,7 +6481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 171.14911, y: -190.00003}
+  m_AnchoredPosition: {x: 207, y: -159}
   m_SizeDelta: {x: 580.488, y: 132.231}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1335092264
@@ -6550,7 +6550,7 @@ MonoBehaviour:
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 42.8
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -8390,7 +8390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6862745}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.81960785}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
