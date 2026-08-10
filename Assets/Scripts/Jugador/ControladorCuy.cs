@@ -182,10 +182,12 @@ public class ControladorCuy : MonoBehaviour
             }
 
             EmitirPolvoDash();
-            if (CamaraDinamica.Instance != null)
-            {
-                CamaraDinamica.Instance.ActivarTemblor(0.1f, 0.15f);
-            }
+            
+              if (CamaraDinamica.Instance != null)
+             {
+                 CamaraDinamica.Instance.ActivarTemblor(0.1f, 0.15f);
+             }
+             
         }
 
         bool presionandoShift = false;
