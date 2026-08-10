@@ -96,6 +96,12 @@ public class GestorReceta : MonoBehaviour
 
     private IEnumerator RutinaVictoriaFade()
     {
+        if (TransitionManager.Instance != null)
+        {
+            TransitionManager.Instance.LoadScene(escenaSiguiente);
+            yield break;
+        }
+
         Canvas canvas = FindAnyObjectByType<Canvas>();
         if (canvas != null)
         {
