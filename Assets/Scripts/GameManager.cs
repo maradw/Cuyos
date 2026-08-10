@@ -97,6 +97,11 @@ public class GameManager : MonoBehaviour
         BuscarJugadorYGuardarPosicion();
         CrearElementosUIDinamicos();
         ActualizarHUDVidas();
+
+        bool esMenuOCinamatica = scene.name == "Menu" || scene.name == "CinematicaInicio" || scene.name == "SampleScene";
+        if (canvasUI != null)
+            canvasUI.gameObject.SetActive(!esMenuOCinamatica);
+
         if (scene.name == "Menu" || scene.name == "CinematicaInicio" || scene.name == "Level1" || scene.name == "escena1_tiles")
         {
             vidasActuales = vidasMaximas;
