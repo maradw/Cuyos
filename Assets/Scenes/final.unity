@@ -273,8 +273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0.000015259, y: -29}
+  m_SizeDelta: {x: 1424.76, y: 407.65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779752929
 MonoBehaviour:
@@ -296,7 +296,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "Tras la intervenci\xF3n de los cuyes, la familia entra en un estado de
+    calma, gracias a lo cual aprenden a afrontar sus diferencias y mantenerse unidos
+    a pesar de los conflictos.\r\nEstos celebran comiendo en familia, siendo los
+    cuyes la comida que los uni\xF3."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5fcfbf5f101c46848abd4f91bd597580, type: 2}
   m_sharedMaterial: {fileID: -2092285993809483220, guid: 5fcfbf5f101c46848abd4f91bd597580, type: 2}
