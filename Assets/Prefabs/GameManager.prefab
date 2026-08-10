@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9087186088043659021}
   - component: {fileID: 2100421460211442233}
+  - component: {fileID: 5827299282932971550}
+  - component: {fileID: 6636590569143332691}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -26,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4794026238372721809}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.4618, y: 6.8296, z: 0}
+  m_LocalPosition: {x: 54.64729, y: 5.81218, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,3 +50,29 @@ MonoBehaviour:
   vidasActuales: 5
   puntoRespawn: {fileID: 0}
   spriteHudTablita: {fileID: -5373794093506911361, guid: 465a35c10f6803b4788d91b69b2e72ae, type: 3}
+  BgMusic: {fileID: 0}
+--- !u!114 &5827299282932971550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4794026238372721809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081a57ec7c7736d4ca15ff1f40d34459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SistemaEstressCuy
+--- !u!114 &6636590569143332691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4794026238372721809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cf26c8e22459641b47dac0bfd9d574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PantallaReceta
+  spriteRecetario: {fileID: 3753772916424357920, guid: 86e6b30a16bdf20419a81d285139d4a8, type: 3}
