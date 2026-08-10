@@ -74,7 +74,7 @@ public class TransitionManager : MonoBehaviour
 
     private IEnumerator nextScene(string scenename)
     {
-       yield return new WaitForSeconds(0.5f);
+       yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(scenename);
     }
 

@@ -48,18 +48,33 @@ public class MusicManager : MonoBehaviour
     }
     public void PlayBG(MusicData musicData)
     {
+        StartCoroutine(PlayBGCoroutine(musicData));
+    }
+
+    private IEnumerator PlayBGCoroutine(MusicData musicData)
+    {
         if (CurrentMusic == musicData)
-            return;
+            yield break;
+
+        if (audioSource.isPlaying)
+        {
+            yield return StartCoroutine(FadeOutCoroutine(0.5f));
+        }
+
         CurrentMusic = musicData;
+
         audioSource.clip = musicData.Clip;
         audioSource.loop = true;
+        audioSource.volume = 1f;
         audioSource.Play();
     }
 
     public void StopFade(float duration)
     {
         StartCoroutine(FadeOutCoroutine(duration));
-        audioSource.volume = 1f;
+       
+        
+        //audioSource.volume = 1f;
     }
 
     private IEnumerator FadeOutCoroutine(float duration)

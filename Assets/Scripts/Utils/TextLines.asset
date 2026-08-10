@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa1b167a863b5354caff5c05a2ebd7ea, type: 3}
+  m_Name: TextLines
+  m_EditorClassIdentifier: Assembly-CSharp::TextData
+  textLines:
+  - "En una zona alta de la sierra peruana se encontraba un peque\xF1o restaurante
+    dirigido por una familia, El gran cuy.   Este restaurante ten\xEDa buena fama,
+    pero se encontraba ante una escasez de recursos y, por ende, la familia pasa
+    por un momento dif\xEDcil. "
+  - "Ante este problema, don Armando, padre de la familia, decide usar sus ahorros
+    para comprar unos cuyes, asegurando que al ofrecerlos como platillo principal
+    las ventas aumentar\xEDan. "
+  - "Do\xF1a Juana, creyendo que se trata de una compra impulsiva confronta a su
+    esposo, generando un conflicto que escala poco a poco. "
+  - 'Don Armando, en un ataque de ira, toma una foto familiar y la rompe. '
+  - "Con la ir\xE1 a\xFAn fresca, don Armando suelta los pedazos y deja que el viento
+    se los lleve. "
+  - "Los cuyes en la caja hab\xEDan escuchado todo el problema, y se dan cuenta del
+    destino que les espera. "
+  - " Pero entre ellos piensan y llegan a la conclusi\xF3n de que, si consiguen insumos
+    para abastecer el restaurante,"
+  - "No tendr\xE1n que ser el siguiente platillo."
+  lineSpecificText: 

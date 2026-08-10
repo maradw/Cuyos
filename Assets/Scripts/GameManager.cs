@@ -1,7 +1,9 @@
+using Game.Audio;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
     private Text textoVidasFade;
     private Text textoHUDVidas;
 
+    [SerializeField] MusicData BgMusic;
+
     private bool procesandoMuerte = false;
 
     private void Awake()
@@ -47,18 +51,20 @@ public class GameManager : MonoBehaviour
             spriteHudTablita = Resources.Load<Sprite>("UI_TablitaVidas");
         }
 
-        AudioSource musicaFondo = gameObject.AddComponent<AudioSource>();
-        musicaFondo.clip = Resources.Load<AudioClip>("musicanivel");
-        if (musicaFondo.clip != null)
-        {
-            musicaFondo.loop = true;
-            musicaFondo.volume = 0.35f;
-            musicaFondo.Play();
-        }
+        /* AudioSource musicaFondo = gameObject.AddComponent<AudioSource>();
+         musicaFondo.clip = Resources.Load<AudioClip>("musicanivel");
+         if (musicaFondo.clip != null)
+         {
+             musicaFondo.loop = true;
+             musicaFondo.volume = 0.35f;
+             musicaFondo.Play();
+         }*/
     }
 
     private void Start()
     {
+        MusicManager.Instance.PlayBG(BgMusic);
+        //MusicManager.Instance.StopFade(0.5f); //+++++++++
         BuscarJugadorYGuardarPosicion();
         CrearElementosUIDinamicos();
     }
@@ -333,7 +339,9 @@ public class GameManager : MonoBehaviour
         bool reiniciado = false;
         while (!reiniciado)
         {
-            if (Input.anyKeyDown)
+            //Input.anyKeyDown
+
+            if (Keyboard.current.anyKey.wasPressedThisFrame)
             {
                 reiniciado = true;
             }
