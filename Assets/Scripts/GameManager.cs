@@ -227,6 +227,7 @@ public class GameManager : MonoBehaviour
 
         ActualizarHUDVidas();
 
+        // MARIA AQUI AQUI - arrastra tu sprite del boton al campo "Sprite Boton Menu" en el Inspector del GameManager
         if (spriteBotonMenu != null)
         {
             GameObject goBoton = new GameObject("BotonMenuPrincipal");
