@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     
     
     public Sprite spriteHudTablita;
+    public Sprite spriteBotonMenu;
 
     private ControladorCuy cuyJugador;
     private Vector3 posicionInicialCuy;
@@ -96,6 +97,17 @@ public class GameManager : MonoBehaviour
         BuscarJugadorYGuardarPosicion();
         CrearElementosUIDinamicos();
         ActualizarHUDVidas();
+        if (scene.name == "Menu" || scene.name == "CinematicaInicio" || scene.name == "Level1" || scene.name == "escena1_tiles")
+        {
+            vidasActuales = vidasMaximas;
+            ActualizarHUDVidas();
+        }
+
+        AudioListener[] listeners = Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None);
+        for (int i = 1; i < listeners.Length; i++)
+        {
+            listeners[i].enabled = false;
+        }
     }
 
     private void BuscarJugadorYGuardarPosicion()
@@ -214,6 +226,36 @@ public class GameManager : MonoBehaviour
         }
 
         ActualizarHUDVidas();
+
+        if (spriteBotonMenu != null)
+        {
+            GameObject goBoton = new GameObject("BotonMenuPrincipal");
+            goBoton.transform.SetParent(canvasUI.transform, false);
+
+            Image imgBoton = goBoton.AddComponent<Image>();
+            imgBoton.sprite = spriteBotonMenu;
+            imgBoton.preserveAspect = true;
+
+            Button btn = goBoton.AddComponent<Button>();
+            btn.onClick.AddListener(() =>
+            {
+                if (TransitionManager.Instance != null)
+                {
+                    TransitionManager.Instance.LoadScene("Menu");
+                }
+                else
+                {
+                    SceneManager.LoadScene("Menu");
+                }
+            });
+
+            RectTransform rtBoton = goBoton.GetComponent<RectTransform>();
+            rtBoton.anchorMin = new Vector2(1f, 1f);
+            rtBoton.anchorMax = new Vector2(1f, 1f);
+            rtBoton.pivot = new Vector2(1f, 1f);
+            rtBoton.anchoredPosition = new Vector2(-30f, -30f);
+            rtBoton.sizeDelta = new Vector2(80f, 80f);
+        }
     }
 
     public void ActualizarHUDVidas()
@@ -299,7 +341,42 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (cuyJugador != null)
+        {
+            cuyJugador.transform.SetParent(null);
+            Vector3 posRespawn = (puntoRespawn != null) ? puntoRespawn.position : posicionInicialCuy;
+            cuyJugador.transform.position = posRespawn;
+            Rigidbody2D rb = cuyJugador.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                rb.linearVelocity = Vector2.zero;
+            }
+            Collider2D col = cuyJugador.GetComponent<Collider2D>();
+            if (col != null) col.enabled = true;
+            cuyJugador.estadoActual = ControladorCuy.EstadoCuy.Quieto;
+            cuyJugador.entradaMovimiento = Vector2.zero;
+        }
+
+        controller_condor[] todosLosCondores = Object.FindObjectsByType<controller_condor>(FindObjectsSortMode.None);
+        foreach (var condor in todosLosCondores)
+        {
+            condor.RestablecerCaptura();
+        }
+
+        Condor[] todasLasAves = Object.FindObjectsByType<Condor>(FindObjectsSortMode.None);
+        foreach (var aveScript in todasLasAves)
+        {
+            aveScript.RestablecerCondor();
+        }
+
+        zorro_code[] todosLosZorros = Object.FindObjectsByType<zorro_code>(FindObjectsSortMode.None);
+        foreach (var zorro in todosLosZorros)
+        {
+            zorro.caza = false;
+            zorro.barra_act = 0f;
+        }
+
         yield return null; 
 
         t = 0f;

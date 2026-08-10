@@ -30,7 +30,15 @@ public class Condor : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         animador = GetComponent<Animator>(); 
-        sombra_guia = transform.parent.gameObject;
+        
+        if (transform.parent != null)
+        {
+            sombra_guia = transform.parent.gameObject;
+        }
+        else
+        {
+            sombra_guia = gameObject;
+        }
         
         if (sombra == null && transform.parent != null)
         {
@@ -84,10 +92,11 @@ public class Condor : MonoBehaviour
 
         if (enPicada)
         {
-            Vector3 destinoPicada = new Vector3(transform.position.x, sombra.position.y + 0.3f, transform.position.z);
+            float targetY = (sombra != null) ? sombra.position.y : (cuyObjetivo != null ? cuyObjetivo.transform.position.y : transform.position.y);
+            Vector3 destinoPicada = new Vector3(transform.position.x, targetY + 0.3f, transform.position.z);
             transform.position = Vector3.MoveTowards(transform.position, destinoPicada, velocidadDescenso * Time.deltaTime);
 
-            if (Mathf.Abs(transform.position.y - (sombra.position.y + 0.3f)) < 0.2f)
+            if (Mathf.Abs(transform.position.y - (targetY + 0.3f)) < 0.2f)
             {
                 enPicada = false;
                 subiendoConCuy = true;
@@ -202,5 +211,13 @@ public class Condor : MonoBehaviour
 
     private void OnBecameInvisible()
     {
+    }
+
+    public void RestablecerCondor()
+    {
+        enPicada = false;
+        subiendoConCuy = false;
+        cuyObjetivo = null;
+        transform.localPosition = posicionInicialAve;
     }
 }

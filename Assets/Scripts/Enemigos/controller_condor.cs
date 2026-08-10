@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class controller_condor : MonoBehaviour
 {
-    public Transform ave;
+    public GameObject ave;
     private bool capturado = false;
     private SpriteRenderer[] renderizadoresAve;
 
@@ -14,13 +14,13 @@ public class controller_condor : MonoBehaviour
             {
                 if (hermano.GetComponent<Condor>() != null || hermano.name.ToLower().Contains("ave") || hermano.name.ToLower().Contains("condor"))
                 {
-                    ave = hermano;
+                    ave = hermano.gameObject;
                     break;
                 }
             }
         }
 
-        if (ave != null && ave)
+        if (ave != null)
         {
             try
             {
@@ -39,9 +39,9 @@ public class controller_condor : MonoBehaviour
         if (cuy != null)
         {
             capturado = true;
-            
+
             cuy.estadoActual = ControladorCuy.EstadoCuy.Agotado;
-            
+
             Rigidbody2D cuyRb = cuy.GetComponent<Rigidbody2D>();
             if (cuyRb != null)
             {
@@ -55,14 +55,14 @@ public class controller_condor : MonoBehaviour
                 cuyCol.enabled = false;
             }
 
-            if (renderizadoresAve == null && ave != null && ave)
+            if (renderizadoresAve == null && ave != null)
             {
                 try { renderizadoresAve = ave.GetComponentsInChildren<SpriteRenderer>(); } catch { }
             }
 
             SetRenderersActive(true);
 
-            if (ave != null && ave)
+            if (ave != null)
             {
                 try
                 {
@@ -88,5 +88,11 @@ public class controller_condor : MonoBehaviour
                 sr.enabled = active;
             }
         }
+    }
+
+    public void RestablecerCaptura()
+    {
+        capturado = false;
+        SetRenderersActive(false);
     }
 }
