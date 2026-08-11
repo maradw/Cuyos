@@ -76,8 +76,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (MusicManager.Instance != null && BgMusic != null)
-            MusicManager.Instance.PlayBG(BgMusic);
+       // if (MusicManager.Instance != null && BgMusic != null)
+           
         BuscarJugadorYGuardarPosicion();
         CrearElementosUIDinamicos();
     }
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        //MusicManager.Instance.PlayBG(BgMusic);
     }
 
     private void OnDisable()
@@ -97,10 +98,21 @@ public class GameManager : MonoBehaviour
         BuscarJugadorYGuardarPosicion();
         CrearElementosUIDinamicos();
         ActualizarHUDVidas();
+        bool esMenuOCinamatica = scene.name == "Menu" || scene.name == "CinematicaInicio" || scene.name == "SampleScene";
+        if (canvasUI != null)
+            canvasUI.gameObject.SetActive(!esMenuOCinamatica);
+
         if (scene.name == "Menu" || scene.name == "CinematicaInicio" || scene.name == "Level1" || scene.name == "escena1_tiles")
         {
             vidasActuales = vidasMaximas;
             ActualizarHUDVidas();
+        }
+        if (scene.name == "escena1_tiles"|| scene.name == "escena2_official")
+        {
+            if (MusicManager.Instance != null && BgMusic != null)
+            {
+                MusicManager.Instance.PlayBG(BgMusic);
+            }
         }
 
         AudioListener[] listeners = Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None);
