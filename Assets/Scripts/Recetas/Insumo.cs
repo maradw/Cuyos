@@ -22,7 +22,8 @@ public enum TipoInsumo
     Habas,
     Trigo,
     Zapallo,
-    FragmentoDeFoto
+    FragmentoDeFoto,
+    ItemTrampa
 }
 
 [RequireComponent(typeof(Collider2D))]

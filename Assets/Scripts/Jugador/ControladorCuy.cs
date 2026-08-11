@@ -653,10 +653,8 @@ public class ControladorCuy : MonoBehaviour
                 {
                     mochilaInsumos.RemoveAt(i);
                     if (capasOriginalesInsumos.ContainsKey(mochilaVisual[i]))
-                    {
                         capasOriginalesInsumos.Remove(mochilaVisual[i]);
-                    }
-                    Destroy(mochilaVisual[i]);
+                    gestor.AgregarItemVisual(mochilaVisual[i]);
                     mochilaVisual.RemoveAt(i);
                 }
             }

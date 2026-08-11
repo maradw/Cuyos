@@ -20,6 +20,8 @@ public class GestorReceta : MonoBehaviour
     public string escenaSiguiente = "";
     public bool fotoEntregada = false;
 
+    private List<GameObject> itemsEnSaco = new List<GameObject>();
+
     private void Start()
     {
         if (recetaRequisitos.Count == 0)
@@ -28,8 +30,24 @@ public class GestorReceta : MonoBehaviour
         if (string.IsNullOrEmpty(escenaSiguiente))
         {
             string escenaActual = SceneManager.GetActiveScene().name;
-            if (escenaActual == "escena1_tiles") escenaSiguiente = "escena2_official";
-            else if (escenaActual == "escena2_official") escenaSiguiente = "final";
+            if (escenaActual == "escena1_tiles")
+            {
+                escenaSiguiente = "escena2_official";
+            }
+            else if (escenaActual == "escena2_official")
+            {
+                escenaSiguiente = "final";
+            }
+            else
+            {
+                int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
+                if (nextIndex < SceneManager.sceneCountInBuildSettings)
+                {
+                    string path = SceneUtility.GetScenePathByBuildIndex(nextIndex);
+                    string sceneName = System.IO.Path.GetFileNameWithoutExtension(path);
+                    escenaSiguiente = sceneName;
+                }
+            }
         }
     }
 
@@ -44,6 +62,19 @@ public class GestorReceta : MonoBehaviour
 
     public bool EntregarInsumoEnSaco(TipoInsumo tipoEntregado)
     {
+        if (tipoEntregado == TipoInsumo.ItemTrampa)
+        {
+            for (int i = 0; i < recetaRequisitos.Count; i++)
+            {
+                RequisitoInsumo r = recetaRequisitos[i];
+                r.cantidadEntregada = r.cantidadNecesaria;
+                recetaRequisitos[i] = r;
+            }
+            fotoEntregada = true;
+            ComprobarVictoriaReceta();
+            return true;
+        }
+
         if (tipoEntregado == TipoInsumo.FragmentoDeFoto)
         {
             fotoEntregada = true;
@@ -66,6 +97,27 @@ public class GestorReceta : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void AgregarItemVisual(GameObject item)
+    {
+        if (item == null) return;
+
+        Collider2D col = item.GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        float offsetRandomX = Random.Range(-0.1f, 0.1f);
+        float offsetRandomY = Random.Range(-0.05f, 0.05f);
+        float alturaDePila = itemsEnSaco.Count * 0.12f;
+
+        item.transform.position = transform.position + new Vector3(offsetRandomX, 0.1f + alturaDePila + offsetRandomY, 0f);
+        item.transform.rotation = Quaternion.Euler(0f, 0f, Random.Range(-15f, 15f));
+        item.transform.localScale = new Vector3(0.12f, 0.12f, 1f);
+
+        SpriteRenderer sr = item.GetComponent<SpriteRenderer>();
+        if (sr != null) sr.sortingOrder = 5 + itemsEnSaco.Count;
+
+        itemsEnSaco.Add(item);
     }
 
     private void ComprobarVictoriaReceta()
