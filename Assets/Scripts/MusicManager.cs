@@ -58,7 +58,7 @@ public class MusicManager : MonoBehaviour
 
         if (audioSource.isPlaying)
         {
-            yield return StartCoroutine(FadeOutCoroutine(0.5f));
+            yield return StartCoroutine(FadeOutCoroutine(1f));
         }
 
         CurrentMusic = musicData;

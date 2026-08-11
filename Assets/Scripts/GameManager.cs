@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
 
         canvasUI = goCanvas.AddComponent<Canvas>();
         canvasUI.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvasUI.sortingOrder = 999;
+        canvasUI.sortingOrder = 3;
 
         CanvasScaler scaler = goCanvas.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
