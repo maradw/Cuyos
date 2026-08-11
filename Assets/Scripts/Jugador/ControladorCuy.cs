@@ -712,6 +712,8 @@ public class ControladorCuy : MonoBehaviour
         else
         {
             Destroy(gameObject);
+
+            //fail? noxd
         }
     }
 

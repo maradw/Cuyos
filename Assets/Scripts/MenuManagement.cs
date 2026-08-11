@@ -13,7 +13,7 @@ public class MenuManagement : MonoBehaviour
     {
         MusicManager.Instance.PlayBG(BgMusic);
         //startButton.onClick.AddListener(() => MusicManager.Instance.StopFade(0.5f));
-        startButton.onClick.AddListener(() => TransitionManager.Instance.LoadSceneCorrutine("CinematicaInicio"));
+        startButton.onClick.AddListener(() => TransitionManager.Instance.LoadScene("CinematicaInicio"));
        exitButton.onClick.AddListener(TransitionManager.Instance.ExitGame);
         //creditsButton.onClick.AddListener(() => TransitionManager.Instance.LoadSceneByName("Credits"));
         AudioSettings.onClick.AddListener(TransitionManager.Instance.ShowAudioSettings);

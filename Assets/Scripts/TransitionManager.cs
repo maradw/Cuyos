@@ -38,9 +38,9 @@ public class TransitionManager : MonoBehaviour
     }
     private void Start()
     {
-        /*fadeImage.gameObject.SetActive(true);
+        fadeImage.gameObject.SetActive(true);
         fadeImage.raycastTarget = true;
-        StartCoroutine(FadeIn());*/
+        StartCoroutine(FadeIn());
         audioSettingsPanel.SetActive(false);
     }
 

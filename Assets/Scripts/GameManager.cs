@@ -36,16 +36,16 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+         if (Instance == null)
+         {
+             Instance = this;
+             DontDestroyOnLoad(gameObject);
+         }
+         else
+         {
+             Destroy(gameObject);
+             return;
+         }
 
         Font fuenteDaydream = Resources.Load<Font>("Fonts/Daydream DEMO");
         if (fuenteDaydream != null)
@@ -97,11 +97,6 @@ public class GameManager : MonoBehaviour
         BuscarJugadorYGuardarPosicion();
         CrearElementosUIDinamicos();
         ActualizarHUDVidas();
-
-        bool esMenuOCinamatica = scene.name == "Menu" || scene.name == "CinematicaInicio" || scene.name == "SampleScene";
-        if (canvasUI != null)
-            canvasUI.gameObject.SetActive(!esMenuOCinamatica);
-
         if (scene.name == "Menu" || scene.name == "CinematicaInicio" || scene.name == "Level1" || scene.name == "escena1_tiles")
         {
             vidasActuales = vidasMaximas;
@@ -247,10 +242,12 @@ public class GameManager : MonoBehaviour
             {
                 if (TransitionManager.Instance != null)
                 {
-                    TransitionManager.Instance.LoadSceneByName("Menu");
+                    
+                    TransitionManager.Instance.LoadScene("Menu");
                 }
                 else
                 {
+                   
                     SceneManager.LoadScene("Menu");
                 }
             });

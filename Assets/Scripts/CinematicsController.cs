@@ -22,7 +22,7 @@ public class CinematicsController : MonoBehaviour
         nextImage.gameObject.SetActive(true);
         nextImage.onClick.AddListener((NextImage));
         //nextScene.onClick.AddListener(() => MusicManager.Instance.StopFade(0.5f));
-        nextScene.onClick.AddListener(() => TransitionManager.Instance.LoadSceneCorrutine("escena1_tiles"));
+        nextScene.onClick.AddListener(() => TransitionManager.Instance.LoadScene("escena1_tiles"));
         
         currentImage = 0;
         textData.ResetText();
