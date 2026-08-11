@@ -26,5 +26,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Settings/Scenes/URP2DSceneTemplate.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/escena2_official.unity
+    guid: afa294230b4368c4797fe64182941586
+  - enabled: 1
+    path: Assets/Scenes/final.unity
+    guid: 3b78b9fb654a8354f8241860aecc5db7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
