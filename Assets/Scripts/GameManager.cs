@@ -76,8 +76,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       // if (MusicManager.Instance != null && BgMusic != null)
-           
         BuscarJugadorYGuardarPosicion();
         CrearElementosUIDinamicos();
     }
@@ -85,7 +83,6 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        //MusicManager.Instance.PlayBG(BgMusic);
     }
 
     private void OnDisable()
@@ -239,7 +236,6 @@ public class GameManager : MonoBehaviour
 
         ActualizarHUDVidas();
 
-        // MARIA AQUI AQUI - arrastra tu sprite del boton al campo "Sprite Boton Menu" en el Inspector del GameManager
         if (spriteBotonMenu != null)
         {
             GameObject goBoton = new GameObject("BotonMenuPrincipal");
@@ -358,6 +354,7 @@ public class GameManager : MonoBehaviour
 
         if (cuyJugador != null)
         {
+            cuyJugador.VaciarMochilaForzado();
             cuyJugador.transform.SetParent(null);
             Vector3 posRespawn = (puntoRespawn != null) ? puntoRespawn.position : posicionInicialCuy;
             cuyJugador.transform.position = posRespawn;

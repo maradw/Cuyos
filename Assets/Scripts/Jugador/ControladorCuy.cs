@@ -611,7 +611,8 @@ public class ControladorCuy : MonoBehaviour
         Insumo insumoDelSuelo = collision.GetComponent<Insumo>();
         if (insumoDelSuelo != null)
         {
-            if (tiempoEsperaRecogida <= 0f && mochilaInsumos.Count < capacidadMochila)
+            bool esFoto = insumoDelSuelo.tipoDeInsumo == TipoInsumo.FragmentoDeFoto;
+            if (tiempoEsperaRecogida <= 0f && (mochilaInsumos.Count < capacidadMochila || esFoto))
             {
                 EmitirChispasRecoleccion(collision.transform.position);
 
@@ -712,9 +713,37 @@ public class ControladorCuy : MonoBehaviour
         else
         {
             Destroy(gameObject);
-
-            //fail? noxd
         }
+    }
+
+    public void VaciarMochilaForzado()
+    {
+        if (mochilaVisual.Count == 0)
+        {
+            mochilaInsumos.Clear();
+            return;
+        }
+        for (int i = mochilaVisual.Count - 1; i >= 0; i--)
+        {
+            GameObject insumoObj = mochilaVisual[i];
+            if (insumoObj == null) continue;
+            insumoObj.transform.SetParent(null);
+            SpriteRenderer insumoSR = insumoObj.GetComponent<SpriteRenderer>();
+            if (insumoSR != null && capasOriginalesInsumos.ContainsKey(insumoObj))
+            {
+                insumoSR.sortingOrder = capasOriginalesInsumos[insumoObj];
+                capasOriginalesInsumos.Remove(insumoObj);
+            }
+            Collider2D col = insumoObj.GetComponent<Collider2D>();
+            if (col != null) col.enabled = true;
+            Vector3 disp = new Vector3(Random.Range(-1.2f, 1.2f), Random.Range(-1.2f, 1.2f), 0);
+            insumoObj.transform.position = transform.position + disp;
+            insumoObj.transform.rotation = Quaternion.identity;
+        }
+        mochilaInsumos.Clear();
+        mochilaVisual.Clear();
+        capasOriginalesInsumos.Clear();
+        tiempoEsperaRecogida = 1.5f;
     }
 
     public void CambiarEstadoOculto(bool estaOculto)

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class PantallaReceta : MonoBehaviour
@@ -40,6 +41,12 @@ public class PantallaReceta : MonoBehaviour
 
     private void Update()
     {
+        string escena = SceneManager.GetActiveScene().name;
+        if (escena == "Menu" || escena == "CinematicaInicio" || escena == "SampleScene")
+        {
+            visible = false;
+            return;
+        }
         if (gestorActual == null) gestorActual = FindAnyObjectByType<GestorReceta>();
         if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame)
             visible = !visible;
@@ -124,10 +131,7 @@ public class PantallaReceta : MonoBehaviour
 
         if (tieneFoto)
         {
-            bool ok = false;
-            if (cuyJugador != null)
-                foreach (var ins in cuyJugador.mochilaInsumos)
-                    if (ins == TipoInsumo.FragmentoDeFoto) { ok = true; break; }
+            bool ok = gestorActual != null && gestorActual.fotoEntregada;
             string txt = (ok ? "v " : "o ") + "Foto  " + (ok ? "1" : "0") + "/1";
             GUI.Label(new Rect(tx, cy, tw, lh), txt, ok ? estiloItemOk : estiloItem);
             cy += lh + 6f;
