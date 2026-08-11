@@ -247,7 +247,7 @@ public class GameManager : MonoBehaviour
             {
                 if (TransitionManager.Instance != null)
                 {
-                    TransitionManager.Instance.LoadScene("Menu");
+                    TransitionManager.Instance.LoadSceneByName("Menu");
                 }
                 else
                 {
